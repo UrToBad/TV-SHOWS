@@ -21,7 +21,7 @@ class DatabaseConnection
      */
     public function __construct(SqlCredentials $credentials)
     {
-        $dsn = "mysql:host=" . $credentials->getHost() . ";dbname=" . $credentials->getDbname();
+        $dsn = "mysql:host=" . $credentials->getHost() . ";dbname=" . $credentials->getDbname() . ";port=" . $credentials->getPort();
         try{
             $this->connection = new PDO($dsn, $credentials->getUsername(), $credentials->getPassword());
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

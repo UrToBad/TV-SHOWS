@@ -1,5 +1,9 @@
 <?php
 
+require_once 'controller/ITagController.php';
+require_once 'class/Tag.php';
+require_once 'class/DatabaseConnection.php';
+
 /**
  * This class is an implementation of the ITagController interface.
  *

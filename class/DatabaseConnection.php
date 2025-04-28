@@ -30,6 +30,21 @@ class DatabaseConnection
         }
     }
 
+
+    /**
+     * Execute a SQL query with optional parameters.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params Optional parameters to bind to the query.
+     * @return PDOStatement The prepared statement.
+     */
+    public function query(string $sql, array $params = []): PDOStatement
+    {
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
+    }
+
     /**
      * Get the PDO connection instance.
      *

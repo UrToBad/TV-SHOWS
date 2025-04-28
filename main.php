@@ -2,7 +2,7 @@
 
 require_once 'class/SqlCredentials.php';
 require_once 'class/DatabaseConnection.php';
-require_once 'controller/impl/TagController.php';
+require 'controller/impl/TagController.php';
 require_once 'class/Tag.php';
 
 $sqlCredentials = new SqlCredentials(

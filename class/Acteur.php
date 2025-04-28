@@ -1,6 +1,5 @@
 <?php
 
-class Acteur
+class Acteur extends Personne
 {
-
 }

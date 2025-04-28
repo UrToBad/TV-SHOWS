@@ -1,6 +1,5 @@
 <?php
 
-class Realisateur
+class Realisateur extends Personne
 {
-
 }

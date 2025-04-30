@@ -1,7 +1,7 @@
 <?php
 
-require 'class/DatabaseConnection.php';
-require 'class/Episode.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Episode.php';
 
 /**
  * This class represents a controller for managing episodes.

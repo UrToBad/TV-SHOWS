@@ -1,7 +1,7 @@
 <?php
 
-require 'class/DatabaseConnection.php';
-require 'class/Saison.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Saison.php';
 
 /**
  * This class represents a controller for managing seasons.

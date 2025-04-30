@@ -1,8 +1,8 @@
 <?php
 
 
-require 'class/DatabaseConnection.php';
-require 'class/Realisateur.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Realisateur.php';
 
 /**
  * This class represents a controller for managing directors.

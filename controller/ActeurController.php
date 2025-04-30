@@ -1,7 +1,7 @@
 <?php
 
-require 'class/DatabaseConnection.php';
-require 'class/Acteur.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Acteur.php';
 
 /**
  * This class represents a controller for managing actors.

@@ -1,9 +1,9 @@
 <?php
 
-require 'class/SqlCredentials.php';
-require 'class/DatabaseConnection.php';
-require 'class/Tag.php';
-require 'controller/TagController.php';
+require_once 'class/SqlCredentials.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Tag.php';
+require_once 'controller/TagController.php';
 
 $sqlCredentials = new SqlCredentials(
     "127.0.0.1", // Host
@@ -17,7 +17,7 @@ $connection = new DatabaseConnection($sqlCredentials);
 $tagController = new TagController($connection);
 
 ?>
-
+<h2>gus</h2>
 <h1>Liste des tags:</h1>
 
 <?php foreach ($tagController->getAllTags() as $tag): ?>

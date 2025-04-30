@@ -1,7 +1,7 @@
 <?php
 
-require 'class/DatabaseConnection.php';
-require 'class/Serie.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Serie.php';
 
 /**
  * This class represents a controller for managing series.

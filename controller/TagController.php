@@ -1,7 +1,7 @@
 <?php
 
-require 'class/DatabaseConnection.php';
-require 'class/Tag.php';
+require_once 'class/DatabaseConnection.php';
+require_once 'class/Tag.php';
 
 /**
  * This class represents a controller for managing tags.
@@ -39,7 +39,7 @@ class TagController
 
         $tags = [];
         foreach ($results as $row) {
-            $tags[] = new Tag($row['id'], $row['name']);
+            $tags[] = new Tag($row['id'], $row['nom']);
         }
         return $tags;
     }

@@ -29,7 +29,8 @@ class SerieController
      */
     public function getAllSeries(): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -40,7 +41,8 @@ class SerieController
      */
     public function getSerieById(int $id): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -51,7 +53,8 @@ class SerieController
      */
     public function getSerieByName(string $name): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -61,7 +64,8 @@ class SerieController
      */
     public function addSerie(Serie $serie): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -72,7 +76,8 @@ class SerieController
      */
     public function updateSerie(Serie $serie): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -83,6 +88,7 @@ class SerieController
      */
     public function deleteSerie(int $id): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 }

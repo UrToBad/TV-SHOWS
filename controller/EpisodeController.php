@@ -29,7 +29,8 @@ class EpisodeController
      */
     public function getAllEpisodes(): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -39,7 +40,8 @@ class EpisodeController
      */
     public function getAllEpisodesBySeasonId(int $id): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -49,7 +51,8 @@ class EpisodeController
      */
     public function getAllEpisodesBySeasonName(string $name): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -60,7 +63,8 @@ class EpisodeController
      */
     public function getEpisodeById(int $id): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -71,7 +75,8 @@ class EpisodeController
      */
     public function getEpisodeByName(string $name): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -82,7 +87,8 @@ class EpisodeController
      */
     public function addEpisode(Episode $episode): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -93,7 +99,8 @@ class EpisodeController
      */
     public function updateEpisode(Episode $episode): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -104,7 +111,8 @@ class EpisodeController
      */
     public function deleteEpisode(int $id): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
 }

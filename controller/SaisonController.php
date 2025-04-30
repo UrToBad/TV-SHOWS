@@ -29,6 +29,8 @@ class SaisonController
      */
     public function getAllSeasons(): ?array
     {
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -39,7 +41,8 @@ class SaisonController
      */
     public function getAllSeasonsBySerieId(int $id): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -50,7 +53,8 @@ class SaisonController
      */
     public function getAllSeasonsBySerieName(string $name): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -61,7 +65,8 @@ class SaisonController
      */
     public function getSeasonById(int $id): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -72,7 +77,8 @@ class SaisonController
      */
     public function getSeasonByName(string $name): ?array
     {
-
+        //TODO implement this method
+        return null;
     }
 
     /**
@@ -82,7 +88,8 @@ class SaisonController
      */
     public function addSeason(Saison $season): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -93,7 +100,8 @@ class SaisonController
      */
     public function updateSeason(Saison $season): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
     /**
@@ -104,7 +112,8 @@ class SaisonController
      */
     public function deleteSeason(int $id): bool
     {
-
+        //TODO implement this method
+        return false;
     }
 
 }

@@ -30,7 +30,12 @@ $saisons = new SaisonController($connection);
 
 
 <h1>saisons</h1>
-<?php foreach ($saisons->getAllSeasons() as $hus): ?>
+<?php foreach ($saisons->getAllSeasonsBySerieId(1) as $hus): ?>
     <p><?= $hus->getTitre() ?>
+    <p>
+    <?php endforeach; ?>
+<h1>series</h1>
+<?php foreach ($series->getAllSeries() as $pus): ?>
+    <p><?= $pus->getTitre() ?>
     <p>
     <?php endforeach; ?>

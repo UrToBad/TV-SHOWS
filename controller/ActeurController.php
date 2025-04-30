@@ -102,7 +102,7 @@ class ActeurController
             'nom' => $acteur->getNom(),
             'photo' => $acteur->getPhoto()
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 
     /**
@@ -116,7 +116,7 @@ class ActeurController
         $stmt = $this->db->query($sql, [
             'id' => $id
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 
     /**
@@ -130,6 +130,33 @@ class ActeurController
         $stmt = $this->db->query($sql, [
             'nom' => $nom
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Get all actors by season ID.
+     *
+     * @param int $saison_id The ID of the season.
+     * @return array|null An array of actors or null if not found.
+     */
+    public function getAllActeursBySeasonId($saison_id): ?array
+    {
+        $sql = "SELECT a.* FROM acteur AS a
+                JOIN acteurs_saions AS b ON a.id = b.acteur_id
+                WHERE c.saison_id = :saison_id";
+        $stmt = $this->db->query($sql, [
+            'saison_id' => $saison_id
+        ]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $acteurs = [];
+        foreach ($results as $row) {
+            $acteurs[] = new Acteur($row['id'], $row['nom'], $row['photo']);
+        }
+        return $acteurs;
     }
 }

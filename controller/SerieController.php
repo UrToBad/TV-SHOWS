@@ -2,6 +2,8 @@
 
 require_once 'class/DatabaseConnection.php';
 require_once 'class/Serie.php';
+require_once 'controller/SaisonController.php';
+require_once 'controller/TagController.php';
 
 /**
  * This class represents a controller for managing series.
@@ -30,32 +32,68 @@ class SerieController
      */
     public function getAllSeries(): ?array
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM series";
+        $stmt = $this->db->query($sql);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!$results) {
+            return null;
+        }
+
+        $series = [];
+        foreach ($results as $row) {
+            $tags = (new TagController($this->db))->getAllTagsBySerieId($row['id']);
+            $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($row['id']);
+            $series[] = new Serie($row['id'], $row['titre'], $tags, $saisons);
+        }
+        return $series;
     }
 
     /**
      * Get a series by its ID.
      *
      * @param int $id The ID of the series.
-     * @return array|null The series data or null if not found.
+     * @return Serie|null The series data or null if not found.
      */
-    public function getSerieById(int $id): ?array
+    public function getSerieById(int $id): ?Serie
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM series WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
+        $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
+
+        return new Serie($result['id'], $result['titre'], $tags, $saisons);
     }
 
     /**
      * Get a series by its name.
      *
      * @param string $name The name of the series.
-     * @return array|null The series data or null if not found.
+     * @return Serie|null The series data or null if not found.
      */
-    public function getSerieByName(string $name): ?array
+    public function getSerieByName(string $name): ?Serie
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM series WHERE titre = :name";
+        $stmt = $this->db->query($sql, ['name' => $name]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
+        $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
+
+        return new Serie($result['id'], $result['titre'], $tags, $saisons);
     }
 
     /**
@@ -89,7 +127,8 @@ class SerieController
      */
     public function deleteSerie(int $id): bool
     {
-        //TODO implement this method
-        return false;
+        $sql = "DELETE FROM series WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        return $stmt->rowCount() > 0;
     }
 }

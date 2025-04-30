@@ -2,6 +2,8 @@
 
 require_once 'class/DatabaseConnection.php';
 require_once 'class/Saison.php';
+require_once 'controller/EpisodeController.php';
+require_once 'controller/ActeurController.php';
 
 /**
  * This class represents a controller for managing seasons.
@@ -30,8 +32,22 @@ class SaisonController
      */
     public function getAllSeasons(): ?array
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM saison";
+        $stmt = $this->db->query($sql);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $seasons = [];
+        foreach ($results as $row) {
+            $saison_id = $row['id'];
+            $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
+        }
+        return $seasons;
     }
 
     /**
@@ -42,8 +58,22 @@ class SaisonController
      */
     public function getAllSeasonsBySerieId(int $id): ?array
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM saison WHERE serie_id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $seasons = [];
+        foreach ($results as $row) {
+            $saison_id = $row['id'];
+            $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
+        }
+        return $seasons;
     }
 
     /**
@@ -54,32 +84,66 @@ class SaisonController
      */
     public function getAllSeasonsBySerieName(string $name): ?array
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM saison WHERE serie_id = (SELECT id FROM serie WHERE titre = :name)";
+        $stmt = $this->db->query($sql, ['name' => $name]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $seasons = [];
+        foreach ($results as $row) {
+            $saison_id = $row['id'];
+            $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
+        }
+        return $seasons;
     }
 
     /**
      * Get a season by its ID.
      *
      * @param int $id The ID of the season.
-     * @return array|null The season data or null if not found.
+     * @return Saison|null The season data or null if not found.
      */
-    public function getSeasonById(int $id): ?array
+    public function getSeasonById(int $id): ?Saison
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM saison WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $saison_id = $result['id'];
+        $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 
     /**
      * Get a season by its name.
      *
      * @param string $name The name of the season.
-     * @return array|null The season data or null if not found.
+     * @return Saison|null The season data or null if not found.
      */
-    public function getSeasonByName(string $name): ?array
+    public function getSeasonByName(string $name): ?Saison
     {
-        //TODO implement this method
-        return null;
+        $sql = "SELECT * FROM saison WHERE titre = :name";
+        $stmt = $this->db->query($sql, ['name' => $name]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $saison_id = $result['id'];
+        $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 
     /**
@@ -113,7 +177,8 @@ class SaisonController
      */
     public function deleteSeason(int $id): bool
     {
-        //TODO implement this method
-        return false;
+        $sql = "DELETE FROM saison WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        return $stmt->rowCount() > 0;
     }
 }

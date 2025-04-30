@@ -91,6 +91,35 @@ class RealisateurController
     }
 
     /**
+     * Get a director by episode ID.
+     *
+     * @param int $episodeId The ID of the episode.
+     * @return array|null The director object or null if not found.
+     */
+    public function getRealisateurByEpisodeId(int $episodeId): ?array
+    {
+        $sql = "SELECT r.* FROM realisateur AS r
+                JOIN realisateurs_episodes AS re ON r.id = re.realisateur_id
+                WHERE re.episode_id = :episodeId";
+        $stmt = $this->db->query($sql, [
+            'episodeId' => $episodeId
+        ]);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $realisateurs = [];
+        foreach ($result as $row) {
+            $realisateurs[] = new Realisateur($row['id'], $row['nom'], $row['photo']);
+        }
+
+        return $realisateurs;
+    }
+
+    /**
      * Add a new director.
      *
      * @param Realisateur $realisateur The director object to add.

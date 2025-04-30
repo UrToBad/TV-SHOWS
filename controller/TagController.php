@@ -46,6 +46,34 @@ class TagController
     }
 
     /**
+     * Get all tags associated with a specific series ID.
+     *
+     * @param int $id The ID of the series.
+     * @return array|null An array of tags associated with the series or null if not found.
+     */
+    public function getAllTagsBySerieId(int $id): ?array
+    {
+        $sql = "SELECT t.* FROM tags t
+                JOIN series_tags st ON t.id = st.tag_id
+                WHERE st.serie_id = :id";
+        $stmt = $this->db->query($sql, [
+            'id' => $id
+        ]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $tags = [];
+        foreach ($results as $row) {
+            $tags[] = new Tag($row['id'], $row['nom']);
+        }
+        return $tags;
+
+    }
+
+    /**
      * Get a tag by its ID.
      *
      * @param int $id The ID of the tag.
@@ -101,7 +129,7 @@ class TagController
         $stmt = $this->db->query($sql, [
             'nom' => $nom
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 
     /**
@@ -116,7 +144,7 @@ class TagController
         $stmt = $this->db->query($sql, [
             'id' => $id
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 
     /**
@@ -131,6 +159,6 @@ class TagController
         $stmt = $this->db->query($sql, [
             'nom' => $nom
         ]);
-        return $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 }

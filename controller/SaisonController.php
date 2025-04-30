@@ -70,7 +70,9 @@ class SaisonController
         foreach ($results as $row) {
             $saison_id = $row['id'];
             $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $episodes = $episodes ?? [];
             $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $casting = $casting ?? [];
             $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
         }
         return $seasons;
@@ -96,7 +98,9 @@ class SaisonController
         foreach ($results as $row) {
             $saison_id = $row['id'];
             $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $episodes = $episodes ?? [];
             $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $casting = $casting ?? [];
             $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
         }
         return $seasons;
@@ -120,7 +124,9 @@ class SaisonController
 
         $saison_id = $result['id'];
         $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $episodes = $episodes ?? [];
         $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        $casting = $casting ?? [];
         return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 
@@ -142,7 +148,9 @@ class SaisonController
 
         $saison_id = $result['id'];
         $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $episodes = $episodes ?? [];
         $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        $casting = $casting ?? [];
         return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 

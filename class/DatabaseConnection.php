@@ -1,5 +1,7 @@
 <?php
 
+require_once 'class/SqlCredentials.php';
+
 /***
  * This class is responsible for establishing a connection to the database using PDO.
  *
@@ -21,13 +23,28 @@ class DatabaseConnection
      */
     public function __construct(SqlCredentials $credentials)
     {
-        $dsn = "mysql:host=" . $credentials->getHost() . ";dbname=" . $credentials->getDbname();
-        try{
+        $dsn = "mysql:host=" . $credentials->getHost() . ";dbname=" . $credentials->getDbname() . ";port=" . $credentials->getPort();
+        try {
             $this->connection = new PDO($dsn, $credentials->getUsername(), $credentials->getPassword());
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+
+    /**
+     * Execute a SQL query with optional parameters.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params Optional parameters to bind to the query.
+     * @return PDOStatement The prepared statement.
+     */
+    public function query(string $sql, array $params = []): PDOStatement
+    {
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 class resultBox
 {
-    public static function render(string $title, string $tags): void
+    public static function render(string $title, array $tags): void
     { ?>
         <div class="result_box">
             <div class="result_box_title"><?php $title?></div>

@@ -142,8 +142,8 @@ class ActeurController
     public function getAllActeursBySeasonId($saison_id): ?array
     {
         $sql = "SELECT a.* FROM acteur AS a
-                JOIN acteurs_saions AS b ON a.id = b.acteur_id
-                WHERE c.saison_id = :saison_id";
+                JOIN acteurs_saisons AS b ON a.id = b.acteur_id
+                WHERE b.saison_id = :saison_id";
         $stmt = $this->db->query($sql, [
             'saison_id' => $saison_id
         ]);

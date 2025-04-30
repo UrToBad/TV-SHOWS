@@ -43,7 +43,7 @@ class EpisodeController
         $episodes = [];
         foreach ($results as $row) {
             $saison_id = $row['saison_id'];
-            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($saison_id);
+            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($row['id']);
             $episodes[] = new Episode($row['id'], $row['numero'], $row['titre'], $row['synopsis'], $row['duree'], $realisateur);
         }
         return $episodes;
@@ -67,7 +67,7 @@ class EpisodeController
         $episodes = [];
         foreach ($results as $row) {
             $saison_id = $row['saison_id'];
-            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($saison_id);
+            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($row['id']);
             $episodes[] = new Episode($row['id'], $row['numero'], $row['titre'], $row['synopsis'], $row['duree'], $realisateur);
         }
 

@@ -32,7 +32,7 @@ class SerieController
      */
     public function getAllSeries(): ?array
     {
-        $sql = "SELECT * FROM series";
+        $sql = "SELECT * FROM serie";
         $stmt = $this->db->query($sql);
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -58,7 +58,7 @@ class SerieController
      */
     public function getSerieById(int $id): ?Serie
     {
-        $sql = "SELECT * FROM series WHERE id = :id";
+        $sql = "SELECT * FROM serie WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ class SerieController
      */
     public function getSerieByName(string $name): ?Serie
     {
-        $sql = "SELECT * FROM series WHERE titre = :name";
+        $sql = "SELECT * FROM serie WHERE titre = :name";
         $stmt = $this->db->query($sql, ['name' => $name]);
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -127,7 +127,7 @@ class SerieController
      */
     public function deleteSerie(int $id): bool
     {
-        $sql = "DELETE FROM series WHERE id = :id";
+        $sql = "DELETE FROM serie WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);
         return $stmt->rowCount() > 0;
     }

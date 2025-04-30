@@ -104,8 +104,7 @@ class RealisateurController
         $stmt = $this->db->query($sql, [
             'episodeId' => $episodeId
         ]);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$result) {
             return null;

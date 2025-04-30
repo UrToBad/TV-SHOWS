@@ -54,7 +54,10 @@ class Episode
         $this->titre = $titre;
         $this->synopsis = $synopsis;
         $this->duree = $duree;
-        $this->realisateurs = $realisateurs;
+        if ($realisateurs == null) {
+            $this->realisateurs = [];
+        }else $this->realisateurs = $realisateurs;
+        
     }
 
     /**

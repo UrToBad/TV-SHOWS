@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Personne.php';
 /**
  * This class represents a director in the system.
  *

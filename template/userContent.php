@@ -3,7 +3,7 @@ require_once ("Head.php");
 
 class userContent
 {
-    public static function render(string $content=null): void
+    public static function render(string $content): void
     { ?>
         <!DOCTYPE html>
         <html lang="fr">

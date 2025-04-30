@@ -1,15 +1,14 @@
 <?php
 
-require_once 'controller/ITagController.php';
-require_once 'class/Tag.php';
-require_once 'class/DatabaseConnection.php';
+require 'class/DatabaseConnection.php';
+require 'class/Tag.php';
 
 /**
- * This class is an implementation of the ITagController interface.
+ * This class represents a controller for managing tags.
  *
  * @author Charles
  */
-class TagController implements ITagController
+class TagController
 {
 
     private DatabaseConnection $db;
@@ -24,7 +23,9 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Get all tags.
+     *
+     * @return array An array of all tags.
      */
     public function getAllTags(): ?array
     {
@@ -44,7 +45,10 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Get a tag by its ID.
+     *
+     * @param int $id The ID of the tag.
+     * @return Tag|null The tag data or null if not found.
      */
     public function getTagById(int $id): ?Tag
     {
@@ -63,7 +67,10 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Get a tag by its name.
+     *
+     * @param string $name The name of the tag.
+     * @return Tag|null The tag data or null if not found.
      */
     public function getTagByName(string $name): ?Tag
     {
@@ -82,7 +89,10 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Add a new tag.
+     *
+     * @param string $name The name of the tag to add.
+     * @return bool True on success, false on failure.
      */
     public function createTag(string $name): bool
     {
@@ -94,7 +104,10 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Remove a tag by its ID.
+     *
+     * @param int $id The ID of the tag to remove.
+     * @return bool True on success, false on failure.
      */
     public function removeTagById(int $id): bool
     {
@@ -106,7 +119,10 @@ class TagController implements ITagController
     }
 
     /**
-     * @inheritDoc
+     * Remove a tag by its name.
+     *
+     * @param string $name The name of the tag to remove.
+     * @return bool True on success, false on failure.
      */
     public function removeTagByName(string $name): bool
     {

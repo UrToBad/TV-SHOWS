@@ -42,13 +42,13 @@ class SqlCredentials
      * @param string $username The username to connect to the database.
      * @param string $password The password to connect to the database.
      */
-    public function __construct(string $host, string $dbname, string $username, string $password, string $port)
+    public function __construct(string $host, string $port, string $dbname, string $username, string $password)
     {
         $this->host = $host;
+        $this->port=$port;
         $this->dbname = $dbname;
         $this->username = $username;
         $this->password = $password;
-        $this->port=$port;
     }
 
     /**
@@ -59,6 +59,16 @@ class SqlCredentials
     public function getHost(): string
     {
         return $this->host;
+    }
+
+    /**
+     * Get the port of the database.
+     *
+     * @return string The port of the database.
+     */
+    public function getPort(): string
+    {
+        return $this->port;
     }
 
     /**
@@ -89,13 +99,5 @@ class SqlCredentials
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    /**
-     * proot
-     */
-    public function getPort(): string
-    {
-        return $this->port;
     }
 }

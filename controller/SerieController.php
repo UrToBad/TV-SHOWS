@@ -1,18 +1,36 @@
 <?php
 
+require 'class/DatabaseConnection.php';
+require 'class/Serie.php';
+
 /**
  * This class represents a controller for managing series.
  *
  * @author Charles
  */
-interface ISerieController
+class SerieController
 {
+
+    private DatabaseConnection $db;
+
+    /**
+     * Constructor to initialize the database connection.
+     *
+     * @param DatabaseConnection $db The database connection object.
+     */
+    public function __construct(DatabaseConnection $db){
+        $this->db = $db;
+    }
+
     /**
      * Get all series.
      *
      * @return array An array of all series.
      */
-    public function getAllSeries(): ?array;
+    public function getAllSeries(): ?array
+    {
+
+    }
 
     /**
      * Get a series by its ID.
@@ -20,7 +38,10 @@ interface ISerieController
      * @param int $id The ID of the series.
      * @return array|null The series data or null if not found.
      */
-    public function getSerieById(int $id): ?array;
+    public function getSerieById(int $id): ?array
+    {
+
+    }
 
     /**
      * Get a series by its name.
@@ -28,14 +49,20 @@ interface ISerieController
      * @param string $name The name of the series.
      * @return array|null The series data or null if not found.
      */
-    public function getSerieByName(string $name): ?array;
+    public function getSerieByName(string $name): ?array
+    {
+
+    }
 
     /**
      * Add a new series.
      * @param Serie $serie The series object to add.
      * @return bool True on success, false on failure.
      */
-    public function addSerie(Serie $serie): bool;
+    public function addSerie(Serie $serie): bool
+    {
+
+    }
 
     /**
      * Update an existing series.
@@ -43,7 +70,10 @@ interface ISerieController
      * @param Serie $serie The series object to update.
      * @return bool True on success, false on failure.
      */
-    public function updateSerie(Serie $serie): bool;
+    public function updateSerie(Serie $serie): bool
+    {
+
+    }
 
     /**
      * Delete a series by its ID.
@@ -51,5 +81,8 @@ interface ISerieController
      * @param int $id The ID of the series to delete.
      * @return bool True on success, false on failure.
      */
-    public function deleteSerie(int $id): bool;
+    public function deleteSerie(int $id): bool
+    {
+
+    }
 }

@@ -40,7 +40,7 @@ class RealisateurController
 
         $realisateurs = [];
         foreach ($results as $row) {
-            $realisateurs[] = new Realisateur($row['id'], $row['name'], $row['photo']);
+            $realisateurs[] = new Realisateur($row['id'], $row['nom'], $row['photo']);
         }
         return $realisateurs;
     }
@@ -64,20 +64,20 @@ class RealisateurController
             return null;
         }
 
-        return new Realisateur($result['id'], $result['name'], $result['photo']);
+        return new Realisateur($result['id'], $result['nom'], $result['photo']);
     }
 
     /**
-     * Get a director by its name.
+     * Get a director by its nom.
      *
-     * @param string $name The name of the director.
+     * @param string $nom The nom of the director.
      * @return Realisateur|null The director object or null if not found.
      */
-    public function getRealisateurByName(string $name): ?Realisateur
+    public function getRealisateurBynom(string $nom): ?Realisateur
     {
-        $sql = "SELECT * FROM realisateur WHERE name = :name";
+        $sql = "SELECT * FROM realisateur WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -86,7 +86,7 @@ class RealisateurController
             return null;
         }
 
-        return new Realisateur($result['id'], $result['name'], $result['photo']);
+        return new Realisateur($result['id'], $result['nom'], $result['photo']);
     }
 
     /**
@@ -97,9 +97,9 @@ class RealisateurController
      */
     public function addRealisateur(Realisateur $realisateur): bool
     {
-        $sql = "INSERT INTO realisateur (name, photo) VALUES (:name, :photo)";
+        $sql = "INSERT INTO realisateur (nom, photo) VALUES (:nom, :photo)";
         $stmt = $this->db->query($sql, [
-            'name' => $realisateur->getNom(),
+            'nom' => $realisateur->getNom(),
             'photo' => $realisateur->getPhoto()
         ]);
 
@@ -121,15 +121,15 @@ class RealisateurController
     }
 
     /**
-     * Remove a director by its name.
-     * @param string $name The name of the director to remove.
+     * Remove a director by its nom.
+     * @param string $nom The nom of the director to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeRealisateurByName(string $name): bool
+    public function removeRealisateurBynom(string $nom): bool
     {
-        $sql = "DELETE FROM realisateur WHERE name = :name";
+        $sql = "DELETE FROM realisateur WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         return $stmt->execute();
     }

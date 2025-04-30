@@ -39,7 +39,7 @@ class ActeurController
 
         $acteurs = [];
         foreach ($results as $row) {
-            $acteurs[] = new Acteur($row['id'], $row['name'], $row['photo']);
+            $acteurs[] = new Acteur($row['id'], $row['nom'], $row['photo']);
         }
         return $acteurs;
     }
@@ -63,20 +63,20 @@ class ActeurController
             return null;
         }
 
-        return new Acteur($result['id'], $result['name'], $result['photo']);
+        return new Acteur($result['id'], $result['nom'], $result['photo']);
     }
 
     /**
-     * Get an actor by its name.
+     * Get an actor by its nom.
      *
-     * @param string $name The name of the actor.
+     * @param string $nom The nom of the actor.
      * @return Acteur|null The actor object or null if not found.
      */
-    public function getActeurByName(string $name): ?Acteur
+    public function getActeurBynom(string $nom): ?Acteur
     {
-        $sql = "SELECT * FROM acteur WHERE name = :name";
+        $sql = "SELECT * FROM acteur WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -85,7 +85,7 @@ class ActeurController
             return null;
         }
 
-        return new Acteur($result['id'], $result['name'], $result['photo']);
+        return new Acteur($result['id'], $result['nom'], $result['photo']);
     }
 
     /**
@@ -96,9 +96,9 @@ class ActeurController
      */
     public function addActeur(Acteur $acteur): bool
     {
-        $sql = "INSERT INTO acteur (name, photo) VALUES (:name, :photo)";
+        $sql = "INSERT INTO acteur (nom, photo) VALUES (:nom, :photo)";
         $stmt = $this->db->query($sql, [
-            'name' => $acteur->getNom(),
+            'nom' => $acteur->getNom(),
             'photo' => $acteur->getPhoto()
         ]);
         return $stmt->execute();
@@ -119,15 +119,15 @@ class ActeurController
     }
 
     /**
-     * Remove an actor by its name.
-     * @param string $name The name of the actor to remove.
+     * Remove an actor by its nom.
+     * @param string $nom The nom of the actor to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeActeurByName(string $name): bool
+    public function removeActeurBynom(string $nom): bool
     {
-        $sql = "DELETE FROM acteur WHERE name = :name";
+        $sql = "DELETE FROM acteur WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         return $stmt->execute();
     }

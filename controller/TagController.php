@@ -63,20 +63,20 @@ class TagController
             return null;
         }
 
-        return new Tag($result['id'], $result['name']);
+        return new Tag($result['id'], $result['nom']);
     }
 
     /**
      * Get a tag by its name.
      *
-     * @param string $name The name of the tag.
+     * @param string $nom The name of the tag.
      * @return Tag|null The tag data or null if not found.
      */
-    public function getTagByName(string $name): ?Tag
+    public function getTagByName(string $nom): ?Tag
     {
-        $sql = "SELECT * FROM tags WHERE name = :name";
+        $sql = "SELECT * FROM tags WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -85,20 +85,20 @@ class TagController
             return null;
         }
 
-        return new Tag($result['id'], $result['name']);
+        return new Tag($result['id'], $result['nom']);
     }
 
     /**
      * Add a new tag.
      *
-     * @param string $name The name of the tag to add.
+     * @param string $nom The name of the tag to add.
      * @return bool True on success, false on failure.
      */
-    public function createTag(string $name): bool
+    public function createTag(string $nom): bool
     {
-        $sql = "INSERT INTO tags (name) VALUES (:name)";
+        $sql = "INSERT INTO tags (nom) VALUES (:nom)";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         return $stmt->execute();
     }
@@ -121,14 +121,14 @@ class TagController
     /**
      * Remove a tag by its name.
      *
-     * @param string $name The name of the tag to remove.
+     * @param string $nom The name of the tag to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeTagByName(string $name): bool
+    public function removeTagByName(string $nom): bool
     {
-        $sql = "DELETE FROM tags WHERE name = :name";
+        $sql = "DELETE FROM tags WHERE nom = :nom";
         $stmt = $this->db->query($sql, [
-            'name' => $name
+            'nom' => $nom
         ]);
         return $stmt->execute();
     }

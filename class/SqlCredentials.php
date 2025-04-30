@@ -45,7 +45,7 @@ class SqlCredentials
     public function __construct(string $host, string $port, string $dbname, string $username, string $password)
     {
         $this->host = $host;
-        $this->port=$port;
+        $this->port = $port;
         $this->dbname = $dbname;
         $this->username = $username;
         $this->password = $password;

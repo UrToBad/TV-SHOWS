@@ -17,9 +17,10 @@ $connection = new DatabaseConnection($sqlCredentials);
 $tagController = new TagController($connection);
 
 ?>
-<h2>gus</h2>
+
 <h1>Liste des tags:</h1>
 
 <?php foreach ($tagController->getAllTags() as $tag): ?>
-    <p><?= $tag->getNom() ?><p>
-<?php endforeach;?>
+    <p><?= $tag->getNom() ?>
+    <p>
+    <?php endforeach; ?>

@@ -5,6 +5,4 @@
  *
  * @author Charles
  */
-class Acteur extends Personne
-{
-}
+class Acteur extends Personne {}

@@ -5,6 +5,4 @@
  *
  * @author Charles
  */
-class Realisateur extends Personne
-{
-}
+class Realisateur extends Personne {}

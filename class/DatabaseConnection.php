@@ -24,10 +24,10 @@ class DatabaseConnection
     public function __construct(SqlCredentials $credentials)
     {
         $dsn = "mysql:host=" . $credentials->getHost() . ";dbname=" . $credentials->getDbname() . ";port=" . $credentials->getPort();
-        try{
+        try {
             $this->connection = new PDO($dsn, $credentials->getUsername(), $credentials->getPassword());
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }

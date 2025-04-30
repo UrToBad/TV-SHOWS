@@ -18,7 +18,8 @@ class SaisonController
      *
      * @param DatabaseConnection $db The database connection object.
      */
-    public function __construct(DatabaseConnection $db){
+    public function __construct(DatabaseConnection $db)
+    {
         $this->db = $db;
     }
 
@@ -115,5 +116,4 @@ class SaisonController
         //TODO implement this method
         return false;
     }
-
 }

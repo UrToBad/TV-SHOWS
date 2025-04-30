@@ -4,7 +4,7 @@ class resultBox
     public static function render(string $title, array $tags): void {
     $tagprint = "";
     foreach ($tags as $tag) {
-        tagprint . tag;
+        $tagprint . tag;
     }
     { ?>
         <div class="result_box">

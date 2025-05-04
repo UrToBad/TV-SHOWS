@@ -14,6 +14,7 @@ class userContent
             <title>2000 'n GUS, since 1547</title>
 
             <link rel="stylesheet" href="style/style.css">
+            <link rel="stylesheet" href="style/footer.css">
         </head>
 
         <body>

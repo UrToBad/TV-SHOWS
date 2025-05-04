@@ -7,6 +7,7 @@ class resultBox
         $tagprint . $tag->getNom();
     }
     { ?>
+        <link rel="stylesheet" href="style/resultbox.css">
         <div class="result_box">
             <div class="result_box_title"><?php echo $title?></div>
             <div class="result_box_content"></div>

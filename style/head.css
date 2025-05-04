@@ -1,0 +1,94 @@
+#header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 20%;
+    
+    background-color: #9ACBD0;
+}
+
+#header_design {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px;
+    border-bottom-left-radius: 50px;
+    width: 80%;
+    height: 100%;
+    background-color: #E6F0FA;
+}
+
+#title_design {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    width: 100%;
+    height: 100%;
+    background-color: #E6F0FA;
+}
+
+#header_high {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+
+    width: 100%;
+    height: 60%;
+
+    background-color: #9ACBD0;
+}
+
+#page_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top-right-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #9ACBD0;
+
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    font-size: clamp(5px,15px,20px);
+    color: #083f41;
+}
+
+#header_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 50px;
+
+    width: 40%;
+    height: 40%;
+
+    background-color: #077A7D;
+}
+
+#header_button button {
+    border-radius: 50px;
+    padding: 10px;
+    color: #70f7f7;
+    background-color: #077A7D;
+    border : None;
+}

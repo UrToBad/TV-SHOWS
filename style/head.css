@@ -92,3 +92,27 @@
     background-color: #077A7D;
     border : None;
 }
+
+@media screen and (max-width:1000px) {
+    #header {
+        height: 20%;
+    }
+}
+
+@media screen and (max-aspect-ratio:9/16) {
+    #header_button {
+        justify-content: center;
+        margin-right: 0px;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 50px;
+    
+        width: 40%;
+        height: 40%;
+    }
+
+    #header_button button {
+        padding: 10px;
+    }
+}

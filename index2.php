@@ -6,7 +6,9 @@
 
     $pagecontent = "";
 
-    
+    for ($i=0; $i < 10 ; $i++) { 
+        $pagecontent . resultBox::render();
+    }
 
     $pagecontent=ob_get_clean();
 

@@ -22,6 +22,8 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     width: 90%;
     height: 75%;
@@ -52,35 +54,5 @@ body {
     #content {
         display: flex;
         flex-direction: column;
-    }
-
-    .result_box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        aspect-ratio: 9/16;
-        margin-top: 10px;
-        max-width: 100vh;
-    
-        background-color: #212952;
-        box-shadow: 10px 5px 5px #1a2144;
-        transition: none;
-    }
-
-    #header_button {
-        justify-content: center;
-        margin-right: 0px;
-        padding: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 50px;
-    
-        width: 40%;
-        height: 40%;
-    }
-
-    #header_button button {
-        padding: 10px;
     }
 }

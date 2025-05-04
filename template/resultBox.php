@@ -1,11 +1,14 @@
 <?php
 class resultBox
 {
-    public static function render(string $title, array $tags): void {
+    public static function render(string $title = NULL, array $tags = NULL): void {
     $tagprint = "";
-    foreach ($tags as $tag) {
+    if ($tags != NULL) {
+        foreach ($tags as $tag) {
         $tagprint . $tag->getNom();
+        }
     }
+        
     { ?>
         <link rel="stylesheet" href="style/resultbox.css">
         <div class="result_box">
@@ -14,6 +17,6 @@ class resultBox
             <div class="result_box_tags"><?php echo $tagprint?></div>
         </div>
         <?php
+        }
     }
-}
 }

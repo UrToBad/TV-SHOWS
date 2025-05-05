@@ -21,13 +21,13 @@ class head
                 }
                 if ($_SESSION["connecte"]) {
                 ?>
-                    <form action="../form/deco.php" method="post">
+                    <form action="/form/deco.php" method="post">
                         <button type="submit">Déconnexion</button>
                     </form>
                 <?php
                 } else {
                 ?>
-                    <form action="../form/admin.php" method="post" class="form">
+                    <form action="/form/admin.php" method="post" class="form">
                         <div id="credentials">
                             <input type="text" name="username" placeholder="Login" require>
                             <input type="text" name="password" placeholder="Password" require>

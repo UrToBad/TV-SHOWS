@@ -1,13 +1,16 @@
 :root{
     --bgColor: #000022;
-    --contentBgColor: #040056;
+    --contentBgColor: #08009e;
     --titleBgColor: #ad1cdc;
     --loginBgColor: #c639f5;
-    --loginButtonBgColor: #040056;
+    --loginButtonBgColor: #030036;
     --searchBgColor: #220085;
     --resultBgColor: #4906a5;
     --resultColor: #7910c2;
+    --footerColor : #040056;
+    --textColor: #e2e2ff;
 }
+
 
 .result_box {
     display: flex;

@@ -1,6 +1,6 @@
 <?php
 
-class head
+class Form
 {
     public static function render(): void { ?>
     <link rel="stylesheet" href="../style/form.css">

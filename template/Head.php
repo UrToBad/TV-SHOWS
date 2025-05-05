@@ -7,7 +7,7 @@ class head
         ?>
         <link rel="stylesheet" href="../style/head.css">
         <div id="header_high">
-            <div id="title_design"><div id="page_title"><h1>2000 'n GUS, since 1547</h1></div></div>
+            <div id="title_design"><div id="page_title"><div id="logo"></div><h1>2000 'n GUS, since 1547</h1></div></div>
             <div id="header_design"><div id="header_button"><?php
                 if(session_status() == PHP_SESSION_NONE) session_start();
                 if (isset($_SESSION["connecte"])==null){

@@ -12,6 +12,11 @@
     --textColor: #e2e2ff;
 }
 
+#logo {
+    background-image: "assets/logo.webp";
+    background-size: contain;
+}
+
 #header {
     display: flex;
     flex-direction: column;

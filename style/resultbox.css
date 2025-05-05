@@ -20,7 +20,7 @@
     max-width: 250px;
 
     background-color: var(--resultBgColor);
-    box-shadow: 10px 5px 5px #055658;
+    box-shadow: 10px 5px 5px var(--loginButtonBgColor);
     transition: transform 0.1s ease;
 }
 

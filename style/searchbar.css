@@ -20,17 +20,12 @@
 }
 
 .search_input {
-    border-radius: 5px;
-    border-color: #69a5cc;
-    background-color: #69a5cc;
-}
-.search_input {
-    max-width: 190px;
+    width: 60%;
     background-color: #f5f5f5;
     color: #242424;
     padding: .15rem .5rem;
     min-height: 40px;
-    border-radius: 4px;
+    border-radius: 50px;
     outline: none;
     border: none;
     line-height: 1.15;
@@ -38,8 +33,7 @@
   }
 
 .search_input:focus {
-    border-bottom: 2px solid #5b5fc7;
-    border-radius: 4px 4px 2px 2px;
+    border-bottom: 2px solid #000000;
   }
   
 .search_input:hover {

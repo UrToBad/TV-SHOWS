@@ -23,8 +23,8 @@ class head
                 ?>
                     <form action="../form/admin.php" method="post" class="form">
                         <div id="credentials">
-                            <input type="text" name="username" require>
-                            <input type="text" name="password" require>
+                            <input type="text" name="username" placeholder="Login" require>
+                            <input type="text" name="password" placeholder="Password" require>
                         </div>
                         <button type="submit">Connexion</button>
                     </form>

@@ -104,12 +104,16 @@
     flex-direction: column;
     width: 70%;
     padding: 10px;
-    
+}
+
+#credentials input{
+    border-radius: 50px;
 }
 
 #header_button button {
     border-radius: 50px;
     color: #70f7f7;
+    padding: 10px;
     background-color: var(--loginBgColor);
     border : None;
 }

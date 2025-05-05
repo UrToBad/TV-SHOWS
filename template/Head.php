@@ -1,5 +1,6 @@
 <?php
 require_once("Searchbar.php");
+require_once("Form.php");
 class head
 {
     public static function render(): void
@@ -35,7 +36,9 @@ class head
                     </form>
                 <?php
                 }
-                ?></div></div>
+                Form::render();
+                ?></div>
+            </div>
         </div>
         <?php
         Searchbar::render();

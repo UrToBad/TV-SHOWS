@@ -4,6 +4,7 @@
     --titleBgColor: #ad1cdc;
     --loginBgColor: #c639f5;
     --loginButtonBgColor: #030036;
+    --loginButtonColor: #cf65f3;
     --searchBgColor: #220085;
     --resultBgColor: #4906a5;
     --resultColor: #7910c2;
@@ -95,7 +96,7 @@
     width: 40%;
     height: 40%;
 
-    background-color: var(--loginBgColor);
+    background-color: var(--loginButtonColor);
 }
 
 #header_button button {

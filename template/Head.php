@@ -22,8 +22,10 @@ class head
                 } else {
                 ?>
                     <form action="../form/admin.php" method="post" class="form">
-                        <input type="text" name="username" require>
-                        <input type="text" name="password" require>
+                        <div id="credentials">
+                            <input type="text" name="username" require>
+                            <input type="text" name="password" require>
+                        </div>
                         <button type="submit">Connexion</button>
                     </form>
                 <?php

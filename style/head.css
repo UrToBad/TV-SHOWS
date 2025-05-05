@@ -1,3 +1,14 @@
+:root{
+    --bgColor: #000022;
+    --contentBgColor: #040056;
+    --titleBgColor: #ad1cdc;
+    --loginBgColor: #c639f5;
+    --loginButtonBgColor: #040056;
+    --searchBgColor: #220085;
+    --resultBgColor: #4906a5;
+    --resultColor: #7910c2;
+}
+
 #header {
     display: flex;
     flex-direction: column;
@@ -6,7 +17,7 @@
     width: 100%;
     height: 20%;
     
-    background-color: #9ACBD0;
+    background-color: var(--contentBgColor);
 }
 
 #header_design {
@@ -18,7 +29,7 @@
     border-bottom-left-radius: 50px;
     width: 80%;
     height: 100%;
-    background-color: #E6F0FA;
+    background-color: var(--loginBgColor);
 }
 
 #title_design {
@@ -32,7 +43,7 @@
 
     width: 100%;
     height: 100%;
-    background-color: #E6F0FA;
+    background-color: var(--titleBgColor);
 }
 
 #header_high {
@@ -44,7 +55,7 @@
     width: 100%;
     height: 60%;
 
-    background-color: #9ACBD0;
+    background-color: var(--loginBgColor);
 }
 
 #page_title {
@@ -61,11 +72,11 @@
     width: 100%;
     height: 100%;
 
-    background-color: #9ACBD0;
+    background-color: var(--titleBgColor);
 
     font-family: Brush Script MT, Brush Script Std, cursive;
     font-size: clamp(5px,15px,20px);
-    color: #083f41;
+    color: white;
 }
 
 #header_button {
@@ -82,14 +93,14 @@
     width: 40%;
     height: 40%;
 
-    background-color: #077A7D;
+    background-color: var(--loginBgColor);
 }
 
 #header_button button {
     border-radius: 50px;
     padding: 10px;
     color: #70f7f7;
-    background-color: #077A7D;
+    background-color: var(--loginBgColor);
     border : None;
 }
 

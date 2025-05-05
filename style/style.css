@@ -1,5 +1,16 @@
+:root{
+    --bgColor: #000022;
+    --contentBgColor: #040056;
+    --titleBgColor: #ad1cdc;
+    --loginBgColor: #c639f5;
+    --loginButtonBgColor: #040056;
+    --searchBgColor: #220085;
+    --resultBgColor: #4906a5;
+    --resultColor: #7910c2;
+}
+
 html {
-    background-color: black;
+    background-color: var(--bgColor);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,7 +26,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #077A7D;
+    background-color: var(--bgColor);
 }
 
 #content {
@@ -30,7 +41,7 @@ body {
     width: 90%;
     height: 75%;
 
-    background-color: #7AE2CF;
+    background-color: var(--contentBgColor);
     overflow: auto;
     scrollbar-width: none;
 }

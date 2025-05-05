@@ -13,7 +13,7 @@
 }
 
 #logo {
-    background-image: "assets/logo.webp";
+    background-image: url("assets/logo.webp");
     background-size: contain;
 }
 

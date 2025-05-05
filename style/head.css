@@ -108,6 +108,7 @@
 
 #credentials input{
     border-radius: 50px;
+    border: none;
 }
 
 #header_button button {

@@ -12,8 +12,8 @@
 }
 
 #searchbar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -46,8 +46,7 @@
   }
 
 .addButton {
-  position: relative;
-  left: 10px;
+    color: white;
 }
 
 .search_input:focus {

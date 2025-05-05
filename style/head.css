@@ -114,6 +114,8 @@
     border-radius: 50px;
     color: #70f7f7;
     padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: var(--loginBgColor);
     border : None;
 }

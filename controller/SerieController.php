@@ -44,7 +44,13 @@ class SerieController
         $series = [];
         foreach ($results as $row) {
             $tags = (new TagController($this->db))->getAllTagsBySerieId($row['id']);
+            if(empty($tags)) {
+                $tags = [];
+            }
             $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($row['id']);
+            if(empty($saisons)) {
+                $saisons = [];
+            }
             $series[] = new Serie($row['id'], $row['titre'], $tags, $saisons);
         }
         return $series;
@@ -68,7 +74,13 @@ class SerieController
         }
 
         $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
+        if(empty($tags)) {
+            $tags = [];
+        }
         $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
+        if(empty($saisons)) {
+            $saisons = [];
+        }
 
         return new Serie($result['id'], $result['titre'], $tags, $saisons);
     }
@@ -122,10 +134,11 @@ class SerieController
      * @param Serie $serie The series object to add.
      * @return bool True on success, false on failure.
      */
-    public function addSerie(Serie $serie): bool
+    public function addSerie(string $titre, ?array $tags = NULL, ?array $saisons = NULL): bool
     {
-        //TODO implement this method
-        return false;
+        $sql = "INSERT INTO serie (titre) VALUES (:titre)";
+        $stmt = $this->db->query($sql, ['titre' => $titre]);
+        return $stmt->rowCount() > 0;
     }
 
     /**
@@ -150,6 +163,15 @@ class SerieController
     {
         $sql = "DELETE FROM serie WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);
-        return $stmt->rowCount() > 0;
+        // Check if the deletion was successful
+        if ($stmt->rowCount() > 0) {
+            // Delete associated tags
+            $tagController = new TagController($this->db);
+
+            // Delete associated seasons
+            $saisonController = new SaisonController($this->db);
+
+            return true;
+        }
     }
 }

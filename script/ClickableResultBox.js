@@ -41,7 +41,7 @@ function deleteItemEvents() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        //location.reload();
+                        location.reload();
                     } else {
                         alert('Erreur lors de la suppression.');
                     }

@@ -92,5 +92,6 @@ UserContent::render(content: $pageContent);
 
 echo '<script src="script/Logo.js"></script>';
 echo '<script src="script/Searchbar.js"></script>';
+echo '<script src="script/LoadForm.js"></script>';
 echo '<script src="script/ClickableResultBox.js"></script>';
 echo '<script>reAttachEvents()</script>';

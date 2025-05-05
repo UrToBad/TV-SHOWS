@@ -1,14 +1,15 @@
 :root{
-    --bgColor: #000022;
-    --contentBgColor: #08009e;
-    --titleBgColor: #ad1cdc;
-    --loginBgColor: #c639f5;
-    --loginButtonBgColor: #030036;
-    --searchBgColor: #220085;
-    --resultBgColor: #4906a5;
-    --resultColor: #7910c2;
-    --footerColor : #040056;
+    --bgColor: #010004;
+    --contentBgColor: #02011a;
+    --titleBgColor: #4861aa;
+    --loginBgColor: #49419d;
+    --loginButtonBgColor: #120f35;
+    --searchBgColor: #766c93;
+    --resultBgColor: #24204f;
+    --resultColor: #2a2377;
+    --footerColor: #09081e;
     --textColor: #e2e2ff;
+    --loginButtonColor: #c1c1c14f;
 }
 
 html {
@@ -35,7 +36,7 @@ body {
 #content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
-    gap: 10px;
+    gap: 15px;
     padding-left: 10px;
     padding-right: 10px;
     justify-content: center;

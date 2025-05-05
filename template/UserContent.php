@@ -22,8 +22,9 @@ class userContent
                 <?php
                     Head::render();
                 ?>
-
             </div>
+
+            <div id="formContainer"></div>
 
             <div id="content">
                 <?php

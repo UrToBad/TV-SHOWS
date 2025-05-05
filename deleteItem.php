@@ -28,6 +28,6 @@ if ($id && $type) {
         echo json_encode(['success' => false]);
         exit;
     }
-    $success = true; //$controller->deleteById($id);
+    $success = $controller->deleteById($id);
     echo json_encode(['success' => $success]);
 }

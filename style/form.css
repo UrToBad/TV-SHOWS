@@ -1,10 +1,93 @@
 #form {
     position: absolute;
     width: 60%;
-    height: 60%;
-    background-color: aliceblue;
+    height: auto;
+    background: linear-gradient(135deg, #4a90e2, #8e44ad);
+    color: white;
     z-index: 9999;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Initialement invisible */
+    animation: fadeIn 0.5s ease forwards; /* Animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#form:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input:focus {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
+}
+
+.input option {
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+
+.input option:checked {
+    background-color: #4a90e2; /* Couleur pour les options sélectionnées */
+    color: white;
+}
+
+#submit_button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #8e44ad, #4a90e2);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#submit_button:hover {
+    background: linear-gradient(135deg, #4a90e2, #8e44ad);
+    transform: scale(1.01);
+}
+
+#submit_button:active {
+    transform: scale(1.05);
+}
+
+.close-button {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #ff0000;
 }

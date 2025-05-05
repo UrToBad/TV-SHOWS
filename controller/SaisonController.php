@@ -154,6 +154,29 @@ class SaisonController
         return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 
+
+    public function getSaisonsStartingBy(string $name): ?array
+    {
+        $sql = "SELECT * FROM saison WHERE titre LIKE :name";
+        $stmt = $this->db->query($sql, ['name' => $name . '%']);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $seasons = [];
+        foreach ($results as $row) {
+            $saison_id = $row['id'];
+            $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+            $episodes = $episodes ?? [];
+            $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+            $casting = $casting ?? [];
+            $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
+        }
+        return $seasons;
+    }
+
     /**
      * Add a new season.
      * @param Saison $season The season object to add.

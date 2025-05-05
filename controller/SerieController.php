@@ -96,6 +96,27 @@ class SerieController
         return new Serie($result['id'], $result['titre'], $tags, $saisons);
     }
 
+
+    public function getSeriesStartingBy(string $name): ?array
+    {
+        $sql = "SELECT * FROM serie WHERE titre LIKE :name";
+        $stmt = $this->db->query($sql, ['name' => $name . '%']);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!$results) {
+            return null;
+        }
+
+        $series = [];
+        foreach ($results as $row) {
+            $tags = (new TagController($this->db))->getAllTagsBySerieId($row['id']);
+            $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($row['id']);
+            $series[] = new Serie($row['id'], $row['titre'], $tags, $saisons);
+        }
+        return $series;
+    }
+
     /**
      * Add a new series.
      * @param Serie $serie The series object to add.

@@ -1,105 +1,62 @@
-function attachClickEvents() {
-    document.querySelectorAll(".result_box").forEach(box => {
-        box.addEventListener("click", () => {
-            const id = box.getAttribute("data-id");
-            const type = box.getAttribute("data-type");
+function attachResultBoxListeners() {
+    const resultBoxes = document.querySelectorAll('.result_box');
 
-            let endpoint = "";
-            if (type === "series") endpoint = "getSeasons.php";
-            if (type === "saisons") endpoint = "getEpisodes.php";
+    resultBoxes.forEach(box => {
+        box.addEventListener('click', () => {
+            let type = box.dataset.type; // Exemple : "series", "saisons", "episodes"
+            const id = box.dataset.id; // ID associé à l'élément cliqué
 
-            if (endpoint === "") return;
+            // Si le type est "series", on le remplace par "saisons"
+            if (type === 'series') type = 'saisons';
+            // Si le type est "saisons", on le remplace par "episodes"
+            else if (type === 'saisons') type = 'episodes';
 
-            fetch(endpoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ id: id })
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("content").innerHTML = data;
-
-                history.pushState({ id, type }, "", `?type=${type}&id=${id}`);
-
-                attachClickEvents();
-                deleteItemEvents();
-            })
-            .catch(error => console.error("Erreur :", error));
-        });
-    });
-}
-
-function deleteItemEvents() {
-    document.querySelectorAll(".delete-icon").forEach(icon => {
-        icon.addEventListener("click", (event) => {
-            event.stopPropagation(); // Empêche la propagation de l'événement click
-
-            const id = icon.getAttribute("data-id");
-            const type = icon.getAttribute("data-type");
-
-            if (confirm("Voulez-vous vraiment supprimer cet élément ?")) {
-                fetch("deleteItem.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ id, type })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const endpoint = type === "saisons" ? "getSeasons.php" : type === "episodes" ? "getEpisodes.php" : "";
-
-                        if (!endpoint) return;
-
-                        fetch(endpoint, {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ id })
-                        }).then(response => response.text())
-                            .then(data => {
-                                document.getElementById("content").innerHTML = data;
-                                attachClickEvents(); // Réattache les événements
-                                deleteItemEvents(); // Réattache les événements
-                            })
-                            .catch(error => console.error("Erreur lors du rechargement :", error));
-                    } else {
-                        alert("Erreur lors de la suppression.");
-                    }
-                });
+            if (type && id) {
+                // Redirige vers l'URL avec les bons paramètres
+                window.location.href = `index.php?type=${type}&id=${id}`;
+            } else if (type) {
+                // Redirige uniquement avec le type
+                window.location.href = `index.php?type=${type}`;
             }
         });
     });
 }
 
-window.addEventListener("popstate", (event) => {
-    if (event.state) {
-        const { id, type } = event.state;
+function deleteItemEvents() {
+    const deleteIcons = document.querySelectorAll('.delete-icon');
 
-        let endpoint = "";
-        if (type === "series") endpoint = "getSeasons.php";
-        if (type === "saisons") endpoint = "getEpisodes.php";
+    deleteIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Empêche la propagation de l'événement click
 
-        if (endpoint === "") return;
+            const id = icon.dataset.id; // ID de l'élément à supprimer
+            const type = icon.dataset.type; // Type de l'élément à supprimer
 
-        fetch(endpoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id: id })
-        })
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("content").innerHTML = data;
-            attachClickEvents();
-            deleteItemEvents();
-        })
-        .catch(error => console.error("Erreur :", error));
-    }
-});
+            if (confirm('Voulez-vous vraiment supprimer cet élément ?')) {
+                fetch('deleteItem.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, type })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        //location.reload();
+                    } else {
+                        alert('Erreur lors de la suppression.');
+                    }
+                })
+                .catch(error => console.error('Erreur :', error));
+            }
+        });
+    });
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    attachClickEvents();
-    deleteItemEvents();
+function reAttachEvents(){
+    attachResultBoxListeners()
+    deleteItemEvents()
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    reAttachEvents()
 });

@@ -13,9 +13,7 @@
 }
 
 #logo {
-    position: relative;
-    top: 0px;
-    left: 0px;
+    margin-left: -50px;
     background-image: url("../assets/logo.webp");
     background-size: contain;
     aspect-ratio: 1;

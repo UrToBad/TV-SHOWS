@@ -183,7 +183,7 @@ class SaisonController
      * @param int $id The ID of the season to delete.
      * @return bool True on success, false on failure.
      */
-    public function deleteSeason(int $id): bool
+    public function deleteById(int $id): bool
     {
         $sql = "DELETE FROM saison WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);

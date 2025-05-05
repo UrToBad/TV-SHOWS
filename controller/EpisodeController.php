@@ -163,7 +163,7 @@ class EpisodeController
      * @param int $id The ID of the episode to delete.
      * @return bool True on success, false on failure.
      */
-    public function deleteEpisode(int $id): bool
+    public function deleteById(int $id): bool
     {
         $sql = "DELETE FROM episode WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);

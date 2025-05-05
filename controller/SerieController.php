@@ -125,7 +125,7 @@ class SerieController
      * @param int $id The ID of the series to delete.
      * @return bool True on success, false on failure.
      */
-    public function deleteSerie(int $id): bool
+    public function deleteById(int $id): bool
     {
         $sql = "DELETE FROM serie WHERE id = :id";
         $stmt = $this->db->query($sql, ['id' => $id]);

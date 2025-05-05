@@ -20,7 +20,7 @@ abstract class Personne
     /**
      * @var string $photo The photo of the person.
      *
-     * The photo is represented as a base64 encoded string.
+     * The URL of the photo.
      */
     protected string $photo;
 

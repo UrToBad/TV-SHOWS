@@ -36,11 +36,16 @@ if ($_GET['type'] === 'series') {
         $pageContent = "<p>Aucune série trouvée.</p>";
     } else {
         foreach ($series as $serie) {
+            $s = $serie->getSaisons();
+            $url = "https://imgs.search.brave.com/wqbY8jUBNeP9PAHUxDXaljWaHrLhS7xWbq4RMDe92bE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMtY2RuLjEyM3Jm/LmNvbS91aS1jb21w/b25lbnRzL2Fzc2V0/cy9zdmcvYWxsLWlt/YWdlcy5zdmc";
+            if(!empty($s)) {
+                $url = $s[0]->getAffiche();
+            }
             $pageContent . ResultBox::render(
                 $serie->getId(),
                 $serie->getTitre(),
                 $serie->getTags(),
-                "https://imgs.search.brave.com/qshfwzKX67kZuaHiKki0p3dLBsaoq7sP3HsTQCs2_ic/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmLzY5/LzllLzFmNjk5ZTgx/OWVhM2M5ODkzMTFl/ZmUxMTdlMjYzNGFj/LmpwZw"
+                $url
             );
         }
     }
@@ -55,7 +60,7 @@ if ($_GET['type'] === 'series') {
                 $saison->getId(),
                 $saison->getTitre(),
                 NULL,
-                "https://example.com/saison-image.jpg",
+                $saison->getAffiche(),
                 "saisons"
             );
         }

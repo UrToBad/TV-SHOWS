@@ -120,7 +120,7 @@ class Saison
     /**
      * Get the poster of the season.
      *
-     * @return string The poster of the season.
+     * @return string The URL of the poster of the season.
      */
     public function getAffiche(): string
     {

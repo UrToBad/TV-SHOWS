@@ -36,7 +36,7 @@ class head
                     </form>
                 <?php
                 }
-                Form::render();
+                //Form::render();
                 ?></div>
             </div>
         </div>

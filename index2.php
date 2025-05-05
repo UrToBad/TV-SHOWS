@@ -21,7 +21,7 @@
     $pagecontent = "";
 
     foreach ($serieController->getAllSeries() as $serie) {
-        $pagecontent . resultBox::render($serie->getTitre(), $serie->getTags());
+        $pagecontent . resultBox::render($serie->getTitre(), $serie->getTags(), "https://imgs.search.brave.com/qshfwzKX67kZuaHiKki0p3dLBsaoq7sP3HsTQCs2_ic/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmLzY5/LzllLzFmNjk5ZTgx/OWVhM2M5ODkzMTFl/ZmUxMTdlMjYzNGFj/LmpwZw");
     }
 
     $pagecontent=ob_get_clean();

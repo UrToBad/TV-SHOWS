@@ -47,6 +47,7 @@
 
 .addButton {
     color: white;
+    margin-left: 20px;
 }
 
 .search_input:focus {

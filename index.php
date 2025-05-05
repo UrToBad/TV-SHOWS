@@ -1,51 +1,32 @@
 <?php
+    require_once "template/userContent.php";
+    require_once "template/resultBox.php";
+    require_once 'class/SqlCredentials.php';
+    require_once 'class/DatabaseConnection.php';
+    require_once 'controller/SerieController.php';
 
-require_once 'class/SqlCredentials.php';
-require_once 'class/DatabaseConnection.php';
-require_once 'class/Tag.php';
-require_once 'controller/TagController.php';
-require_once 'controller/SerieController.php';
-require_once 'controller/SaisonController.php';
+    $sqlCredentials = new SqlCredentials(
+        "localhost", // Host
+        "3306",
+        "tvshows",   // Database
+        "root",      // Username
+        "root"       // Password
+    );
 
-$sqlCredentials = new SqlCredentials(
-    "localhost", // Host
-    "3306",
-    "tvshows",   // Database
-    "root",      // Username
-    "root"       // Password
-);
+    $connection = new DatabaseConnection($sqlCredentials);
+    $serieController = new SerieController($connection);
+        
+    ob_start();
 
-$connection = new DatabaseConnection($sqlCredentials);
-$tagController = new TagController($connection);
-$serieController = new SerieController($connection);
+    $pagecontent = "";
 
-function afficherTags($tags) {
-    echo "<h1>Liste des tags:</h1>";
-    foreach ($tags as $tag) {
-        echo "<p>" . htmlspecialchars($tag->getNom()) . "</p>";
+    foreach ($serieController->getAllSeries() as $serie) {
+        $pagecontent . resultBox::render($serie->getId(), $serie->getTitre(), $serie->getTags(), "https://imgs.search.brave.com/qshfwzKX67kZuaHiKki0p3dLBsaoq7sP3HsTQCs2_ic/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmLzY5/LzllLzFmNjk5ZTgx/OWVhM2M5ODkzMTFl/ZmUxMTdlMjYzNGFj/LmpwZw");
     }
-}
 
-function afficherSeries($series) {
-    echo "<h1>Toutes les séries</h1>";
-    foreach ($series as $serie) {
-        echo "<p>" . htmlspecialchars($serie->getTitre()) . "</p>";
-        echo "<h3>Tags</h3><ul>";
-        foreach ($serie->getTags() as $tag) {
-            echo "<li>" . htmlspecialchars($tag->getNom()) . "</li>";
-        }
-        echo "</ul><h3>Saisons</h3><ul>";
-        foreach ($serie->getSaisons() as $saison) {
-            echo "<li>" . htmlspecialchars($saison->getTitre()) . "</li>";
-            echo "<h4>Episodes</h4><ul>";
-            foreach ($saison->getEpisodes() as $episode) {
-                echo "<li>Saison " . htmlspecialchars($saison->getNumero()) . " - " . htmlspecialchars($episode->getTitre()) . "</li>";
-            }
-            echo "</ul>";
-        }
-        echo "</ul>";
-    }
-}
+    $pagecontent=ob_get_clean();
 
-afficherTags($tagController->getAllTags());
-afficherSeries($serieController->getAllSeries());
+    userContent::render(content: $pagecontent);
+    //Ajouter le script js
+    echo '<script src="script/ClickableResultBox.js"></script>';
+    

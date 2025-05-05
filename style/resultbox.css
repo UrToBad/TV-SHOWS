@@ -78,7 +78,7 @@
     font-size: 20px;
     color: #ff0000;
     background-color: #ffffff00;
-    border-radius: 50%;
+    border: none;
     padding: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, background-color 0.2s;
@@ -86,7 +86,6 @@
 
 .result_box .delete-icon:hover {
     transform: scale(1.2);
-    background-color: #ffe6e6;
 }
 
 @media screen and (max-width:1000px) {

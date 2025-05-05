@@ -22,8 +22,17 @@ if ($serieId) {
     $serie = $serieController->getSerieById($serieId);
 
     ob_start();
-    foreach ($serie->getSaisons() as $season) {
-        resultBox::render($season->getId(), $season->getTitre(),NULL, "", "saisons");
+    $AllSaisons = $serie->getSaisons();
+    usort($AllSaisons, function ($a, $b) {
+        return $a->getNumero() <=> $b->getNumero();
+    });
+    foreach ($AllSaisons as $season) {
+        $casting = $season->getCasting();
+        $castingList = "";
+        foreach ($casting as $actor) {
+            $castingList .= $actor->getNom() . ", ";
+        }
+        resultBox::render($season->getId(),$season->getNumero() . " - " . $season->getTitre(),NULL, "", "saisons", $castingList);
     }
     echo ob_get_clean();
 }

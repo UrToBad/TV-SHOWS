@@ -22,8 +22,17 @@ if ($seasonId) {
     $saison = $saisonController->getSeasonById($seasonId);
 
     ob_start();
-    foreach ($saison->getEpisodes() as $episode) {
-        resultBox::render($episode->getId(), $episode->getTitre(), null, "", "episodes");
+    $AllEpisodes = $saison->getEpisodes();
+    usort($AllEpisodes, function ($a, $b) {
+        return $a->getNumero() <=> $b->getNumero();
+    });
+    foreach ($AllEpisodes as $episode) {
+        $realisateurs = $episode->getRealisateurs();
+        $realisateursList = "";
+        foreach ($realisateurs as $realisateur) {
+            $realisateursList .= $realisateur->getNom() . ", ";
+        }
+        resultBox::render($episode->getId(),$episode->getNumero() . " - " . $episode->getTitre(), null, "", "episodes", $realisateursList);
     }
     echo ob_get_clean();
 }

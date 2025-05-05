@@ -13,7 +13,7 @@
 }
 
 #logo {
-    background-image: url("assets/logo.webp");
+    background-image: url("../assets/logo.webp");
     background-size: contain;
     aspect-ratio: 1;
     height: 100%;

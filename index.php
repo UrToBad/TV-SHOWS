@@ -1,6 +1,6 @@
 <?php
-    require_once "template/userContent.php";
-    require_once "template/resultBox.php";
+    require_once "template/UserContent.php";
+    require_once "template/ResultBox.php";
     require_once 'class/SqlCredentials.php';
     require_once 'class/DatabaseConnection.php';
     require_once 'controller/SerieController.php';
@@ -27,6 +27,6 @@
     $pagecontent=ob_get_clean();
 
     userContent::render(content: $pagecontent);
-    //Ajouter le script js
+
     echo '<script src="script/ClickableResultBox.js"></script>';
     

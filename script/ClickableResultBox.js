@@ -20,12 +20,42 @@ function attachClickEvents() {
             .then(response => response.text())
             .then(data => {
                 document.getElementById("content").innerHTML = data;
+
+                history.pushState({ id, type }, "", `?type=${type}&id=${id}`);
+
                 attachClickEvents();
             })
             .catch(error => console.error("Erreur :", error));
         });
     });
 }
+
+// Gère l'événement "Retour"
+window.addEventListener("popstate", (event) => {
+    if (event.state) {
+        const { id, type } = event.state;
+
+        let endpoint = "";
+        if (type === "series") endpoint = "getSeasons.php";
+        if (type === "saisons") endpoint = "getEpisodes.php";
+
+        if (endpoint === "") return;
+
+        fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("content").innerHTML = data;
+            attachClickEvents(); // Réattache les événements
+        })
+        .catch(error => console.error("Erreur :", error));
+    }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     attachClickEvents();

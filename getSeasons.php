@@ -2,7 +2,7 @@
 require_once 'class/DatabaseConnection.php';
 require_once 'controller/SerieController.php';
 require_once 'class/Saison.php';
-require_once 'template/resultBox.php';
+require_once 'template/ResultBox.php';
 
 $sqlCredentials = new SqlCredentials(
     "localhost",

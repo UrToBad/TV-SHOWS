@@ -71,7 +71,9 @@
 }
 
 .result_box .delete-icon {
-    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     cursor: pointer;
     font-size: 20px;
     color: #ff0000;

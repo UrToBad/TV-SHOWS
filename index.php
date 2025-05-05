@@ -46,7 +46,7 @@ if ($_GET['type'] === 'series') {
     }
 } elseif ($_GET['type'] === 'saisons' && isset($_GET['id'])) {
     $serieId = intval($_GET['id']);
-    $saisons = $search ? $saisonController->getSaisonsStartingBy($search) : $saisonController->getAllSeasonsBySerieId($serieId);
+    $saisons = $search ? $saisonController->getSaisonsStartingBy($serieId, $search) : $saisonController->getAllSeasonsBySerieId($serieId);
     if (empty($saisons)) {
         $pageContent = "<p>Aucune saison trouvée pour cette série.</p>";
     }else{
@@ -62,7 +62,7 @@ if ($_GET['type'] === 'series') {
     }
 } elseif ($_GET['type'] === 'episodes' && isset($_GET['id'])) {
     $saisonId = intval($_GET['id']);
-    $episodes = $search ? $episodeController->getEpisodesStartingBy($search) : $episodeController->getAllEpisodesBySeasonId($saisonId);
+    $episodes = $search ? $episodeController->getEpisodesStartingBy($saisonId, $search) : $episodeController->getAllEpisodesBySeasonId($saisonId);
     if (empty($episodes)) {
         $pageContent = "<p>Aucun épisode trouvé pour cette saison.</p>";
     }else{

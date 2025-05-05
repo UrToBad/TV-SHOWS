@@ -155,10 +155,10 @@ class SaisonController
     }
 
 
-    public function getSaisonsStartingBy(string $name): ?array
+    public function getSaisonsStartingBy(int $serieId, string $name): ?array
     {
-        $sql = "SELECT * FROM saison WHERE titre LIKE :name";
-        $stmt = $this->db->query($sql, ['name' => $name . '%']);
+        $sql = "SELECT * FROM saison WHERE titre LIKE :name AND serie_id = :serieId";
+        $stmt = $this->db->query($sql, ['name' => $name . '%', 'serieId' => $serieId]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$results) {

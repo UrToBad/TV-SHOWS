@@ -17,9 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Récupère le type actuel depuis l'URL
             const urlParams = new URLSearchParams(window.location.search);
             const type = urlParams.get("type") || "series"; // Par défaut "series" si aucun type n'est défini
+            const id = urlParams.get("id"); // Récupère l'id s'il existe
 
             // Met à jour l'URI sans recharger la page
-            const newUrl = `index.php?type=${type}&search="${encodeURIComponent(query)}"`;
+            let newUrl = `index.php?type=${type}&search="${encodeURIComponent(query)}"`;
+            if (id) {
+                newUrl += `&id=${id}`;
+            }
             history.pushState(null, "", newUrl);
             location.reload();
 

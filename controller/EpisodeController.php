@@ -125,10 +125,10 @@ class EpisodeController
         return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree'], $realisateur);
     }
 
-    public function getEpisodesStartingBy(string $name): ?array
+    public function getEpisodesStartingBy(int $saisonId, string $name): ?array
     {
-        $sql = "SELECT * FROM episode WHERE titre LIKE :name";
-        $stmt = $this->db->query($sql, ['name' => $name . '%']);
+        $sql = "SELECT * FROM episode WHERE titre LIKE :name AND saison_id = :saisonId";
+        $stmt = $this->db->query($sql, ['name' => $name . '%', 'saisonId' => $saisonId]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$results) {

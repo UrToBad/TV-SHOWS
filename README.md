@@ -23,6 +23,15 @@ Ce projet est une application web permettant de gérer et de consulter des infor
    ```bash
    git clone https://github.com/UrToBad/tv-shows.git
    
+2. Importez la base de données :
+   - Ouvrez le fichier `tvshows.sql` dans votre outil de gestion de base de données (ex: phpMyAdmin, DataGrip) et exécutez-le pour créer les tables nécessaires.
+
+3. Lancer un serveur web :
+   - Vous pouvez utiliser un serveur local comme XAMPP, WAMP ou MAMP ou la commande PHP intégrée :
+   ```bash
+    php -S localhost:8000
+    ```
+   
 ## Contributeurs
 
 - [Charles](https://github.com/UrToBad) Backend

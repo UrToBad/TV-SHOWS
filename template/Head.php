@@ -6,7 +6,7 @@ class head
     public static function render(): void
     { 
         ?>
-        <link rel="stylesheet" href="../style/head.css">
+        <link rel="stylesheet" href="style/head.css">
         <div id="header_high">
             <div id="title_design">
                 <div id="logo"></div>

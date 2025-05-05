@@ -2,7 +2,7 @@
     --bgColor: #000022;
     --contentBgColor: #08009e;
     --titleBgColor: #ad1cdc;
-    --loginBgColor: #da6efd;
+    --loginBgColor: #c639f5;
     --loginButtonBgColor: #030036;
     --searchBgColor: #220085;
     --resultBgColor: #4906a5;
@@ -10,7 +10,6 @@
     --footerColor : #040056;
     --textColor: #e2e2ff;
 }
-
 
 #header {
     display: flex;

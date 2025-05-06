@@ -35,20 +35,28 @@ class SqlCredentials
     private string $password;
 
     /**
-     * Constructor for the SqlCredentials class.
+     * Constructeur de la classe SqlCredentials.
      *
-     * @param string $host The host of the database.
-     * @param string $dbname The name of the database.
-     * @param string $username The username to connect to the database.
-     * @param string $password The password to connect to the database.
+     * Si aucun paramètre n'est fourni, les valeurs par défaut sont chargées depuis les variables d'environnement.
+     *
+     * @param string|null $host L'hôte de la base de données.
+     * @param string|null $port Le port de la base de données.
+     * @param string|null $dbname Le nom de la base de données.
+     * @param string|null $username Le nom d'utilisateur pour se connecter à la base de données.
+     * @param string|null $password Le mot de passe pour se connecter à la base de données.
      */
-    public function __construct(string $host, string $port, string $dbname, string $username, string $password)
-    {
-        $this->host = $host;
-        $this->port = $port;
-        $this->dbname = $dbname;
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct(
+        ?string $host = null,
+        ?string $port = null,
+        ?string $dbname = null,
+        ?string $username = null,
+        ?string $password = null
+    ) {
+        $this->host = $host ?? 'localhost';
+        $this->port = $port ?? '3306';
+        $this->dbname = $dbname ?? 'tvshows';
+        $this->username = $username ?? 'root';
+        $this->password = $password ?? 'root';
     }
 
     /**

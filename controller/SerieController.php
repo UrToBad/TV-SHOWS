@@ -138,19 +138,11 @@ class SerieController
     {
         $sql = "INSERT INTO serie (titre) VALUES (:titre)";
         $stmt = $this->db->query($sql, ['titre' => $titre]);
+        $tagController = new TagController($this->db);
+        foreach ($tags as $tag) {
+            $tagController->addTagToSerie($titre, $tag);
+        }
         return $stmt->rowCount() > 0;
-    }
-
-    /**
-     * Update an existing series.
-     *
-     * @param Serie $serie The series object to update.
-     * @return bool True on success, false on failure.
-     */
-    public function updateSerie(Serie $serie): bool
-    {
-        //TODO implement this method
-        return false;
     }
 
     /**
@@ -161,17 +153,18 @@ class SerieController
      */
     public function deleteById(int $id): bool
     {
+        // Supprimer les saisons associées
+        $saisonController = new SaisonController($this->db);
+        $saisonController->deleteAllSeasonsBySerieId($id);
+
+        // Supprimer les tags associés
+        $tagController = new TagController($this->db);
+        $tagController->deleteTags($id);
+
+        // Supprimer la série
         $sql = "DELETE FROM serie WHERE id = :id";
-        $stmt = $this->db->query($sql, ['id' => $id]);
-        // Check if the deletion was successful
-        if ($stmt->rowCount() > 0) {
-            // Delete associated tags
-            $tagController = new TagController($this->db);
+        $this->db->query($sql, ['id' => $id]);
 
-            // Delete associated seasons
-            $saisonController = new SaisonController($this->db);
-
-            return true;
-        }
+        return true;
     }
 }

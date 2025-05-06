@@ -4,13 +4,7 @@ require_once 'class/DatabaseConnection.php';
 require_once 'controller/SaisonController.php';
 require_once 'controller/SerieController.php';
 
-$sqlCredentials = new SqlCredentials(
-    "localhost",
-    "3306",
-    "tvshows",
-    "root",
-    "root"
-);
+$sqlCredentials = new SqlCredentials();
 $connection = new DatabaseConnection($sqlCredentials);
 $data = json_decode(file_get_contents("php://input"), true);
 

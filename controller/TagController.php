@@ -161,4 +161,40 @@ class TagController
         ]);
         return $stmt->rowCount() > 0;
     }
+
+
+    /**
+     * Add a tag to a series.
+     *
+     * @param string $serieName The name of the series.
+     * @param string $tagName The name of the tag.
+     * @return bool True on success, false on failure.
+     */
+    public function addTagToSerie(string $serieName, string $tagName): bool
+    {
+        $sql = "INSERT INTO series_tags (serie_id, tag_id)
+                SELECT s.id, t.id
+                FROM serie s, tags t
+                WHERE s.titre = :serieName AND t.nom = :tagName";
+        $stmt = $this->db->query($sql, [
+            'serieName' => $serieName,
+            'tagName' => $tagName
+        ]);
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Delete all tags associated with a specific series ID.
+     *
+     * @param int $seriId The ID of the series.
+     * @return bool True on success, false on failure.
+     */
+    public function deleteTags(int $seriId): bool
+    {
+        $sql = "DELETE FROM series_tags WHERE serie_id = :serieId";
+        $stmt = $this->db->query($sql, [
+            'serieId' => $seriId
+        ]);
+        return $stmt->rowCount() > 0;
+    }
 }

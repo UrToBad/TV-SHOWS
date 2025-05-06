@@ -12,13 +12,7 @@ if (!isset($_GET['type'])) {
     exit;
 }
 
-$sqlCredentials = new SqlCredentials(
-    "localhost", // Host
-    "3306",
-    "tvshows",   // Database
-    "root",      // Username
-    "root"       // Password
-);
+$sqlCredentials = new SqlCredentials();
 
 $connection = new DatabaseConnection($sqlCredentials);
 $serieController = new SerieController($connection);

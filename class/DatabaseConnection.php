@@ -1,6 +1,6 @@
 <?php
 
-require_once 'class/SqlCredentials.php';
+require_once 'SqlCredentials.php';
 
 /***
  * This class is responsible for establishing a connection to the database using PDO.

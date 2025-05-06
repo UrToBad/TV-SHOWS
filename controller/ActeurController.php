@@ -159,4 +159,24 @@ class ActeurController
         }
         return $acteurs;
     }
+
+    public function addActeurToSeason($saison_id, $acteur_id): bool
+    {
+        $sql = "INSERT INTO acteurs_saisons (saison_id, acteur_id) VALUES (:saison_id, :acteur_id)";
+        $stmt = $this->db->query($sql, [
+            'saison_id' => $saison_id,
+            'acteur_id' => $acteur_id
+        ]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function removeActeurFromSeason($saison_id, $acteur_id): bool
+    {
+        $sql = "DELETE FROM acteurs_saisons WHERE saison_id = :saison_id AND acteur_id = :acteur_id";
+        $stmt = $this->db->query($sql, [
+            'saison_id' => $saison_id,
+            'acteur_id' => $acteur_id
+        ]);
+        return $stmt->rowCount() > 0;
+    }
 }

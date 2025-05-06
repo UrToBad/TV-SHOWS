@@ -42,7 +42,7 @@ class EpisodeController
 
         $episodes = [];
         foreach ($results as $row) {
-            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($row['id']);
+            $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($row['id']);
             $realisateur = $realisateur ?? [];
             $episodes[] = new Episode($row['id'], $row['numero'], $row['titre'], $row['synopsis'], $row['duree'], $realisateur);
         }
@@ -66,7 +66,7 @@ class EpisodeController
 
         $episodes = [];
         foreach ($results as $row) {
-            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($row['id']);
+            $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($row['id']);
             $realisateur = $realisateur ?? [];
             $episodes[] = new Episode($row['id'], $row['numero'], $row['titre'], $row['synopsis'], $row['duree'], $realisateur);
         }
@@ -92,7 +92,7 @@ class EpisodeController
         }
 
         $saison_id = $result['saison_id'];
-        $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($saison_id);
+        $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($saison_id);
         if (!$realisateur) {
             return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree']);
         }
@@ -117,7 +117,7 @@ class EpisodeController
         }
 
         $saison_id = $result['saison_id'];
-        $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($saison_id);
+        $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($saison_id);
         if (!$realisateur) {
             return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree']);
         }
@@ -137,7 +137,7 @@ class EpisodeController
 
         $episodes = [];
         foreach ($results as $row) {
-            $realisateur = (new RealisateurController($this->db))->getRealisateurByEpisodeId($row['id']);
+            $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($row['id']);
             $realisateur = $realisateur ?? [];
             $episodes[] = new Episode($row['id'], $row['numero'], $row['titre'], $row['synopsis'], $row['duree'], $realisateur);
         }
@@ -147,34 +147,39 @@ class EpisodeController
 
     /**
      * Add a new episode.
-     *
-     * @param Episode $episode The episode object to add.
-     * @param int $saion_id The ID of the season to which the episode belongs.
      * @return bool True on success, false on failure.
      */
-    public function addEpisode(Episode $episode, int $saison_id): bool
+    public function addEpisode(int $saison_id, string $titre, int $numero, string $synopsis, int $duree, array $realisateurs): bool
     {
-        $sql = "INSERT INTO episode (numero, titre, synopsis, duree, saison_id) VALUES (:numero, :titre, :synopsis, :duree, :saison_id)";
+        $sql = "INSERT INTO episode (saison_id, titre, numero, synopsis, duree) VALUES (:saison_id, :titre, :numero, :synopsis, :duree)";
         $stmt = $this->db->query($sql, [
-            'numero' => $episode->getNumero(),
-            'titre' => $episode->getTitre(),
-            'synopsis' => $episode->getSynopsis(),
-            'duree' => $episode->getDuree(),
-            'saison_id' => $saison_id
+            'saison_id' => $saison_id,
+            'titre' => $titre,
+            'numero' => $numero,
+            'synopsis' => $synopsis,
+            'duree' => $duree
         ]);
-        return $stmt->rowCount() > 0;
-    }
+        if($stmt->rowCount() > 0){
+            $sql = "SELECT id FROM episode WHERE titre = :titre AND saison_id = :saison_id";
+            $stmt = $this->db->query($sql, [
+                'titre' => $titre,
+                'saison_id' => $saison_id
+            ]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                $episodeId = $result['id'];
+                $directorController = new RealisateurController($this->db);
+                foreach ($realisateurs as $realisateurName) {
+                    $realisateurId = $directorController->getRealisateurByNom($realisateurName)->getId();
+                    if ($realisateurId) {
+                        $directorController->addRealisateurToEpisode($episodeId, $realisateurId);
+                    }
+                }
+            }
+        }
 
-    /**
-     * Update an existing episode.
-     *
-     * @param Episode $episode The episode object to update.
-     * @return bool True on success, false on failure.
-     */
-    public function updateEpisode(Episode $episode): bool
-    {
-        //TODO implement this method
-        return false;
+        return true;
+
     }
 
     /**
@@ -185,8 +190,32 @@ class EpisodeController
      */
     public function deleteById(int $id): bool
     {
+        $directorController = new RealisateurController($this->db);
+        $directors = $directorController->getRealisateursByEpisodeId($id);
+        if ($directors) {
+            foreach ($directors as $director) {
+                $directorController->removeRealisateurFromEpisode($id, $director->getId());
+            }
+        }
         $sql = "DELETE FROM episode WHERE id = :id";
-        $stmt = $this->db->query($sql, ['id' => $id]);
-        return $stmt->rowCount() > 0;
+        $this->db->query($sql, ['id' => $id]);
+        return true;
     }
+
+    /**
+     * Delete all episodes by their season ID.
+     * @param int $seasonId The ID of the season.
+     * @return bool True on success, false on failure.
+     */
+    public function deleteAllEpisodesBySeasonId(int $seasonId): bool
+    {
+        $episodes = $this->getAllEpisodesBySeasonId($seasonId);
+        if ($episodes) {
+            foreach ($episodes as $episode) {
+                $this->deleteById($episode->getId());
+            }
+        }
+        return true;
+    }
+
 }

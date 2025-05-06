@@ -6,6 +6,7 @@ require_once 'class/DatabaseConnection.php';
 require_once 'controller/SerieController.php';
 require_once 'controller/SaisonController.php';
 require_once 'controller/EpisodeController.php';
+require_once 'controller/ActeurController.php';
 
 if (!isset($_GET['type'])) {
     header('Location: index.php?type=series');
@@ -18,6 +19,7 @@ $connection = new DatabaseConnection($sqlCredentials);
 $serieController = new SerieController($connection);
 $saisonController = new SaisonController($connection);
 $episodeController = new EpisodeController($connection);
+$acteurController = new ActeurController($connection);
 
 ob_start();
 
@@ -70,13 +72,28 @@ if ($_GET['type'] === 'series') {
                 $episode->getId(),
                 $episode->getTitre(),
                 NULL,
-                "https://example.com/episode-image.jpg",
+                "",
                 "episodes"
             );
         }
     }
 
-} else {
+} elseif ($_GET['type'] === 'acteurs') {
+    $acteurs = $search ? $acteurController->getActeursStartingBy($search) : $acteurController->getAllActeurs();
+    if (empty($acteurs)) {
+        $pageContent = "<p>Aucun acteur trouvé.</p>";
+    } else {
+        foreach ($acteurs as $acteur) {
+            $pageContent . ResultBox::render(
+                $acteur->getId(),
+                $acteur->getNom(),
+                NULL,
+                $acteur->getPhoto(),
+                "acteurs"
+            );
+        }
+    }
+}else {
     $pageContent = "<p>Type inconnu ou paramètre manquant.</p>";
 }
 

@@ -42,11 +42,22 @@ class head
         <?php
         Searchbar::render(); ?>
         <div id="categories">
-            <button type="acteur" onclick="window.location.href='index.php?type=acteurs'">Acteurs</button>
-            <button type="realisateur" onclick="window.location.href='index.php?type=realisateurs'">Réalisateurs</button>
-            <button type="series" onclick="window.location.href='index.php?type=series'">Séries</button>
-            <button type="tags" onclick="window.location.href='index.php?type=tags'">Tags</button>
+            <button type="acteur" onclick="clearSearchAndRedirect('index.php?type=acteurs')">Acteurs</button>
+            <button type="realisateur" onclick="clearSearchAndRedirect('index.php?type=realisateurs')">Réalisateurs</button>
+            <button type="series" onclick="clearSearchAndRedirect('index.php?type=series')">Séries</button>
+            <button type="tags" onclick="clearSearchAndRedirect('index.php?type=tags')">Tags</button>
         </div>
+
+        <script>
+            function clearSearchAndRedirect(url) {
+                const searchInput = document.getElementById("search_tag");
+                if (searchInput) {
+                    localStorage.removeItem("searchValue");
+                    searchInput.value = "";
+                }
+                window.location.href = url;
+            }
+        </script>
     <?php 
     }
 }

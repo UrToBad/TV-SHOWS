@@ -6,6 +6,12 @@ require_once 'controller/TagController.php';
 require_once 'controller/ActeurController.php';
 require_once 'controller/RealisateurController.php';
 
+/**
+ * This class is responsible for rendering forms for adding series, seasons, episodes, tags, actors, and directors.
+ *
+ * @author Charles
+ * @author Adrien
+ */
 class Form
 {
     public static function render(string $type = "series", ?int $id = NULL): void {
@@ -70,6 +76,28 @@ class Form
                     echo '<option value="' . htmlspecialchars($director) . '">' . htmlspecialchars($director) . '</option>';
                 }
                 echo '</select>';
+                break;
+            }
+            case 'tags' : {
+                echo '
+                        <form class="form" method="POST" action="add_tag_process.php">
+                        <input placeholder="Entrer le nom du tag" class="input" type="text" name="tag_name">';
+                break;
+            }
+            case 'acteurs': {
+                echo '
+                        <form class="form" method="POST" action="add_actor_process.php">
+                        <input placeholder="Entrer le nom de l\'acteur" class="input" type="text" name="actor_name">
+                        <input placeholder="Entrer l\'url de la photo" class="input" type="text" name="actor_photo">
+                        ';
+                break;
+            }
+            case 'realisateurs': {
+                echo '
+                        <form class="form" method="POST" action="add_director_process.php">
+                        <input placeholder="Entrer le nom du réalisateur" class="input" type="text" name="director_name">
+                        <input placeholder="Entrer l\'url de la photo" class="input" type="text" name="director_photo">
+                        ';
                 break;
             }
         }

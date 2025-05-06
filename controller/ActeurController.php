@@ -7,6 +7,7 @@ require_once 'class/Acteur.php';
  * This class represents a controller for managing actors.
  *
  * @author Charles
+ * @author Sulyvan
  */
 class ActeurController
 {
@@ -46,63 +47,20 @@ class ActeurController
     }
 
     /**
-     * Get an actor by its ID.
-     *
-     * @param int $id The ID of the actor.
-     * @return Acteur|null The actor object or null if not found.
-     */
-    public function getActeurById(int $id): ?Acteur
-    {
-        $sql = "SELECT * FROM acteur WHERE id = :id";
-        $stmt = $this->db->query($sql, [
-            'id' => $id
-        ]);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        return new Acteur($result['id'], $result['nom'], $result['photo']);
-    }
-
-    /**
-     * Get an actor by its nom.
-     *
-     * @param string $nom The nom of the actor.
-     * @return Acteur|null The actor object or null if not found.
-     */
-    public function getActeurBynom(string $nom): ?Acteur
-    {
-        $sql = "SELECT * FROM acteur WHERE nom = :nom";
-        $stmt = $this->db->query($sql, [
-            'nom' => $nom
-        ]);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        return new Acteur($result['id'], $result['nom'], $result['photo']);
-    }
-
-    /**
      * Add a new actor.
      *
-     * @param Acteur $acteur The actor object to add.
+     * @param string $name The name of the actor.
+     * @param string $photo The photo URL of the actor.
      * @return bool True on success, false on failure.
      */
-    public function addActeur(Acteur $acteur): bool
+    public function createActeur(string $name, string $photo): bool
     {
         $sql = "INSERT INTO acteur (nom, photo) VALUES (:nom, :photo)";
-        $stmt = $this->db->query($sql, [
-            'nom' => $acteur->getNom(),
-            'photo' => $acteur->getPhoto()
+        $this->db->query($sql, [
+            'nom' => $name,
+            'photo' => $photo
         ]);
-        return $stmt->rowCount() > 0;
+        return true;
     }
 
     /**
@@ -110,27 +68,17 @@ class ActeurController
      * @param int $id The ID of the actor to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeActeurById(int $id): bool
+    public function deleteById(int $id): bool
     {
-        $sql = "DELETE FROM acteur WHERE id = :id";
-        $stmt = $this->db->query($sql, [
+        $sql = "DELETE FROM acteurs_saisons WHERE acteur_id = :id";
+        $this->db->query($sql, [
             'id' => $id
         ]);
-        return $stmt->rowCount() > 0;
-    }
-
-    /**
-     * Remove an actor by its nom.
-     * @param string $nom The nom of the actor to remove.
-     * @return bool True on success, false on failure.
-     */
-    public function removeActeurBynom(string $nom): bool
-    {
-        $sql = "DELETE FROM acteur WHERE nom = :nom";
-        $stmt = $this->db->query($sql, [
-            'nom' => $nom
+        $sql = "DELETE FROM acteur WHERE id = :id";
+        $this->db->query($sql, [
+            'id' => $id
         ]);
-        return $stmt->rowCount() > 0;
+        return true;
     }
 
     /**

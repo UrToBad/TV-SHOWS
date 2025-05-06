@@ -8,6 +8,7 @@ require_once 'controller/RealisateurController.php';
  * This class represents a controller for managing episodes.
  *
  * @author Charles
+ * @author Sulyvan
  */
 class EpisodeController
 {
@@ -75,56 +76,11 @@ class EpisodeController
     }
 
     /**
-     * Get an episode by its ID.
-     *
-     * @param int $id The ID of the episode.
-     * @return Episode|null The episode data or null if not found.
+     * Gets all episodes by their season ID and title starting with a specific string.
+     * @param int $saisonId The ID of the season.
+     * @param string $name The starting string of the episode title.
+     * @return array|null An array of episodes or null if not found.
      */
-    public function getEpisodeById(int $id): ?Episode
-    {
-
-        $sql = "SELECT * FROM episode WHERE id = :id";
-        $stmt = $this->db->query($sql, ['id' => $id]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        $saison_id = $result['saison_id'];
-        $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($saison_id);
-        if (!$realisateur) {
-            return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree']);
-        }
-
-        return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree'], $realisateur);
-    }
-
-    /**
-     * Get an episode by its name.
-     *
-     * @param string $name The name of the episode.
-     * @return Episode|null The episode data or null if not found.
-     */
-    public function getEpisodeByName(string $name): ?Episode
-    {
-        $sql = "SELECT * FROM episode WHERE titre = :name";
-        $stmt = $this->db->query($sql, ['name' => $name]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        $saison_id = $result['saison_id'];
-        $realisateur = (new RealisateurController($this->db))->getRealisateursByEpisodeId($saison_id);
-        if (!$realisateur) {
-            return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree']);
-        }
-
-        return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree'], $realisateur);
-    }
-
     public function getEpisodesStartingBy(int $saisonId, string $name): ?array
     {
         $sql = "SELECT * FROM episode WHERE titre LIKE :name AND saison_id = :saisonId";

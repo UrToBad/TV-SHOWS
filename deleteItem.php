@@ -18,6 +18,12 @@ if ($id && $type) {
         $controller = new EpisodeController($connection);
     }elseif ($type === 'series') {
         $controller = new SerieController($connection);
+    }elseif($type === 'tags') {
+        $controller = new TagController($connection);
+    } elseif ($type === 'acteurs') {
+        $controller = new ActeurController($connection);
+    } elseif ($type === 'realisateurs') {
+        $controller = new RealisateurController($connection);
     } else {
         echo json_encode(['success' => false]);
         exit;

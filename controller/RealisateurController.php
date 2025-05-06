@@ -8,6 +8,7 @@ require_once 'class/Realisateur.php';
  * This class represents a controller for managing directors.
  *
  * @author Charles
+ * @author Sulyvan
  */
 class RealisateurController
 {
@@ -44,27 +45,6 @@ class RealisateurController
             $realisateurs[] = new Realisateur($row['id'], $row['nom'], $row['photo']);
         }
         return $realisateurs;
-    }
-
-    /**
-     * Get a director by its ID.
-     *
-     * @param int $id The ID of the director.
-     * @return Realisateur|null The director object or null if not found.
-     */
-    public function getRealisateurById(int $id): ?Realisateur
-    {
-        $sql = "SELECT * FROM realisateur WHERE id = :id";
-        $stmt = $this->db->query($sql, [
-            'id' => $id
-        ]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        return new Realisateur($result['id'], $result['nom'], $result['photo']);
     }
 
     /**
@@ -119,15 +99,16 @@ class RealisateurController
     /**
      * Add a new director.
      *
-     * @param Realisateur $realisateur The director object to add.
+     * @param string $name The name of the director.
+     * @param string $photo The photo URL of the director.
      * @return bool True on success, false on failure.
      */
-    public function addRealisateur(Realisateur $realisateur): bool
+    public function createRealisateur(string $name, string $photo): bool
     {
         $sql = "INSERT INTO realisateur (nom, photo) VALUES (:nom, :photo)";
         $this->db->query($sql, [
-            'nom' => $realisateur->getNom(),
-            'photo' => $realisateur->getPhoto()
+            'nom' => $name,
+            'photo' => $photo
         ]);
         return true;
     }
@@ -137,25 +118,16 @@ class RealisateurController
      * @param int $id The ID of the director to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeRealisateurById(int $id): bool
+    public function deleteById(int $id): bool
     {
-        $sql = "DELETE FROM realisateur WHERE id = :id";
+        $sql = "DELETE FROM realisateurs_episodes WHERE realisateur_id = :id";
         $this->db->query($sql, [
             'id' => $id
         ]);
-        return true;
-    }
 
-    /**
-     * Remove a director by its nom.
-     * @param string $nom The nom of the director to remove.
-     * @return bool True on success, false on failure.
-     */
-    public function removeRealisateurBynom(string $nom): bool
-    {
-        $sql = "DELETE FROM realisateur WHERE nom = :nom";
+        $sql = "DELETE FROM realisateur WHERE id = :id";
         $this->db->query($sql, [
-            'nom' => $nom
+            'id' => $id
         ]);
         return true;
     }

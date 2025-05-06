@@ -27,7 +27,7 @@ CREATE TABLE `acteur` (
   `nom` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `photo` text COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `acteur` (
 
 LOCK TABLES `acteur` WRITE;
 /*!40000 ALTER TABLE `acteur` DISABLE KEYS */;
-INSERT INTO `acteur` VALUES (1,'Bryan Cranston','\'\''),(2,'Aaron Paul','\'\''),(3,'Millie Bobby Brown','\'\''),(4,'David Harbour','\'\''),(5,'Winona Ryder','\'\''),(6,'Pedro Pascal','\'\''),(7,'Bella Ramsey','\'\''),(8,'Evan Peters','\'\''),(9,'Sarah Paulson','\'\''),(10,'Finn Wolfhard','\'\'');
+INSERT INTO `acteur` VALUES (1,'Bryan Cranston','https://imgs.search.brave.com/9pLqprsdkL4-Fv4Dvh-ENtRf_cBrdADaEq6qW9yYxQI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk1UQTJOakV5/TVRZNE1UVmVRVEpl/UVdwd1oxNUJiV1Uz/TURRNU5EQXpORGNA/LmpwZw'),(2,'Aaron Paul','https://imgs.search.brave.com/7lS6DGhVHmvqcMvNkyZNxMsfdhhEG4m1rB2gdEhnBTY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5va21hZ2F6aW5l/LmNvbS9icmFuZC1p/bWcvZjdpbDE4VjFr/LzB4MC8yMDEzLzA4/L2Fhcm9uLXBhdWwt/My5qcGc'),(3,'Millie Bobby Brown','https://imgs.search.brave.com/-1YiG1cuh2Q-nvx0GLAkvsLc_HJV7oGE7cRYrBbZeKM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuaGVsbG9tYWdh/emluZS5jb20vaG9y/aXpvbi9zcXVhcmUv/YjVkMjk1MTBjY2E3/LWdldHR5aW1hZ2Vz/LTIyMDI3MjY1MjIu/anBn'),(4,'David Harbour','https://imgs.search.brave.com/xGClj8OCpPL25mrgqyP79Rc1LluH5qIt5aSxcp6kI1s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QlpqVmtabU5p/WkdZdFpUVTNNaTAw/WXpoaExXSTFOelF0/T1RJeU5XVm1OMkl3/TWpnMlhrRXlYa0Zx/Y0djQC5qcGc'),(5,'Winona Ryder','https://imgs.search.brave.com/kpuNzgya9iq5b4-E_InJQAM-Plg15Up-w3qG6X9xJ0o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdGFubmljYS5j/b20vNjcvMjIyNDY3/LTA1MC0zNzgzN0VC/NS9XaW5vbmEtUnlk/ZXItMjAxOC5qcGc_/dz0zMDA'),(6,'Pedro Pascal','https://imgs.search.brave.com/gUqxVYwz3MNLu-X0-VRBO42krA6wu_GsbGSY1Lpfkqc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50aGVtb3ZpZWRi/Lm9yZy90L3AvdzMw/MF9hbmRfaDQ1MF9i/ZXN0djIvOVZZSzdv/eGNxaGpkNUxBSDZa/RkozWHpPbElELmpw/Zw'),(7,'Bella Ramsey','https://imgs.search.brave.com/b7HgpbdpLhhLuJuzp2FAmrl7ijycTMgVQ0f1us-y99Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQy/NTY4NTUwNy9waG90/by9sb25kb24tZW5n/bGFuZC1iZWxsYS1y/YW1zZXktYXR0ZW5k/cy10aGUtY2F0aGVy/aW5lLWNhbGxlZC1i/aXJkeS11ay1wcmVt/aWVyZS1hdC10aGUt/Y3Vyem9uLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1ua0c1/bk1Jb3NhdUhaTmRm/RGM5Vnl6cTJwTWtt/b0tnWGdlY3FzVzNk/ekVvPQ'),(8,'Evan Peters','https://imgs.search.brave.com/NTU4iNqzjKbggbURVf26WAyKSXv8LjZ26mRUdusB_2A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50aGVtb3ZpZWRi/Lm9yZy90L3AvdzMw/MF9hbmRfaDQ1MF9i/ZXN0djIvODJ5dTNJ/NXZTb0VxbklMM0dF/OG9CNURIZWhJLmpw/Zw'),(9,'Sarah Paulson','https://imgs.search.brave.com/6PiO3JbHndhebYgC9xFg5bFsIZK9-dXLHOO_ALqDPF8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbTEu/YW1pbm9hcHBzLmNv/bS82ODYwLzZiNDBj/MGZlMWRjMTNlZjA2/OGM3MWM5NWY2NmY5/YzI4MjBiZGY2Njdy/MS05ODUtMTM2MHYy/X2hxLmpwZw'),(10,'Finn Wolfhard','https://imgs.search.brave.com/d9SzC35gKRGpL6mmaGTL2kSH1lW2O1Pk1K5pak5m9gA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY2luZWZpbC5j/b20vc3RhcnMvMTA2/MDMzNC53ZWJw');
 /*!40000 ALTER TABLE `acteur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `episode` (
   PRIMARY KEY (`id`),
   KEY `saison_id_fk2` (`saison_id`),
   CONSTRAINT `saison_id_fk2` FOREIGN KEY (`saison_id`) REFERENCES `saison` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `realisateur` (
   `nom` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `photo` text COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `realisateur` (
 
 LOCK TABLES `realisateur` WRITE;
 /*!40000 ALTER TABLE `realisateur` DISABLE KEYS */;
-INSERT INTO `realisateur` VALUES (1,'Vince Gilligan','\'\''),(2,'Shawn Levy','\'\''),(3,'Tim Van Patten','\'\''),(4,'Cary Joji Fukunaga','\'\''),(5,'David Nutter','\'\''),(6,'Michelle MacLaren','\'\''),(7,'Reed Morano','\'\''),(8,'The Duffer Brothers','\'\''),(9,'Jean-Marc Vallée','\'\''),(10,'Deborah Chow','\'\'');
+INSERT INTO `realisateur` VALUES (1,'Vince Gilligan','https://imgs.search.brave.com/JHeycNuuuu73FCstRH2aZmyLAzD6QZNDSUaYjyGcbJ8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9l/L2UyL1ZpbmNlX0dp/bGxpZ2FuX2J5X0dh/Z2VfU2tpZG1vcmVf/My5qcGc'),(2,'Shawn Levy','https://imgs.search.brave.com/-WgxN6bF_7m8_HBedCqcMTy6kHl3AFkxH3Z9wB_J5S4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50aGVtb3ZpZWRi/Lm9yZy90L3AvdzMw/MF9hbmRfaDQ1MF9i/ZXN0djIvYjF1bGtD/SHo4YmlHODdMakxR/UWlNQ2ViRVpvLmpw/Zw'),(3,'Tim Van Patten','https://imgs.search.brave.com/kYcAzeGO0wkHx07hjzdpDenMtjiPnpGFcri1XXc1zFc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL1Mv/cHYtdGFyZ2V0LWlt/YWdlcy9lMWQ4ZTY0/ZTI2YTA3ZTk0OTAw/MjBkNWZmZWFjMmU1/M2Q5YTdjYzZmYmEz/ZmM0NjQxYzAxNDkz/YmU5OGI5ZTdiLmpw/Zw'),(4,'Cary Joji Fukunaga','https://imgs.search.brave.com/A_w8wy2yyG_kt9aMPOiJKWAT_rRSxskz8I_-sJMtrLg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy84/LzgxL01hbmlhY19V/S19wcmVtaWVyZV8o/RnVrdW5hZ2EpLmpw/Zw'),(5,'David Nutter','https://imgs.search.brave.com/NrTJATq3r8jAIKNkGxzDb8n1b-kt00C6WDwX6P_7EvE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZWNyYW5sYXJnZS5j/b20vY29udGVudC91/cGxvYWRzLzIwMTcv/MDQvMmlpNHp4a3R3/YXhsMGI0d2xwMG5u/YmNsenN5LTU5Ni5q/cGc'),(6,'Michelle MacLaren','https://imgs.search.brave.com/IBkB_dUkzI5rDfrO_0iCL_Qtsb2g6myrfs0_yaFjCys/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuZW50ZXJ0YWlu/bWVudC5pZS9wZXJz/b24vdzc4MF8zTGNI/NWVOaXlzTVdhZXBB/UmxsVnJTNER6bjcu/anBnP3c9NDAwJnE9/aGlnaA'),(7,'Reed Morano','https://imgs.search.brave.com/gaqa_qYdF_jmv7QcCsm8hA29EgyzBEl-A_BhIxieKRQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/Yi5jaW5lc2VyaWUu/Y29tL3BlcnNvbi8x/NTg2MC8xNDkzMTIu/anBnP2ltZ2VuZz0v/Zl9qcGcvY21wcl8w/L3dfMjEyL2hfMzE4/L21fY3JvcGJveCZ2/ZXI9MQ'),(8,'The Duffer Brothers','https://imgs.search.brave.com/2ci_evbbZyosYsC_UkgQuygwJaxSKfS8rZ05-vMtTMc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM5/NzI4NDY1OS9mci9w/aG90by9icm9va2x5/bi1uZXcteW9yay1t/YXR0LWR1ZmZlci1h/bmQtcm9zcy1kdWZm/ZXItYXR0ZW5kLW5l/dGZsaXhzLXN0cmFu/Z2VyLXRoaW5ncy1z/ZWFzb24tNC1uZXcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PTQtM0NUMmpZZ0pC/R0dkV2JhMHlXYzNj/eVAtcXozSkVlZ2Jr/TjdZb1RxQnM9'),(9,'Jean-Marc Vallée','https://imgs.search.brave.com/xj5Z8YRK-twbmqPo-XC3vgM8b6-gk2eREDpLBEyjRkQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnB1cmVwZW9w/bGUuY29tL2FydGlj/bGVzLzMvNDYvOTQv/MjMvQC82NzYyNDAz/LWplYW4tbWFyYy12/YWxsZWUtbGVzLWNl/bGVicml0ZXMtYXJy/aXZlLTU4MHgwLTIu/anBn'),(10,'Deborah Chow','https://imgs.search.brave.com/Y6hHP8ZiKJ8PK0ZjlwBJTbEvfdzVn_DIA-Z0LbpolrQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ4/MTAwNjg0NS9mci9w/aG90by9sb25kb24t/ZW5nbGFuZC1kZWJv/cmFoLWNob3ctYXR0/ZW5kcy10aGUtb2Jp/LXdhbi1rZW5vYmkt/cGFuZWwtYXQtc3Rh/ci13YXJzLWNlbGVi/cmF0aW9uLWluLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1I/TFBaX3RGLWpSVjNH/QXJnc3JmYks3aWst/NHhqaUxXekJCZVhO/WXdzOG1jPQ');
 /*!40000 ALTER TABLE `realisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +165,7 @@ CREATE TABLE `saison` (
   PRIMARY KEY (`id`),
   KEY `serie_id_fk` (`serie_id`),
   CONSTRAINT `serie_id_fk` FOREIGN KEY (`serie_id`) REFERENCES `serie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `saison` (
 
 LOCK TABLES `saison` WRITE;
 /*!40000 ALTER TABLE `saison` DISABLE KEYS */;
-INSERT INTO `saison` VALUES (1,'Breaking Bad - Saison 1','https://fr.web.img3.acsta.net/c_210_280/pictures/18/07/23/11/26/1237965.jpg',1,1),(2,'Breaking Bad - Saison 2','https://imgs.search.brave.com/HvGBolvCva9YfaZ2vDv096cGJfwykVXYc2VwJSFBvVE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNS5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9waWN0dXJl/cy8xOC8wNy8yMy8x/MS8yNi8xNTk3MzQy/LmpwZw',2,1),(3,'Breaking Bad - Saison 3','https://imgs.search.brave.com/ADfjEbVs-v2Dda2ECab7zt_pDrpMy0SeNp0e8orbWmI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nMy5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9waWN0dXJl/cy8xOC8wNy8yMy8x/MS8yNi8yMTY3NjU4/LmpwZw',3,1),(4,'Stranger Things - Saison 1','https://imgs.search.brave.com/ZEwN6RxREUrFVGnQXi1D9bqDUk5eeuwWviG5Uz_mgI4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb3N0/ZXJzLndhYXNhYmku/Y29tL21lZGlhcy8x/NTg2NDYwMzc2ODAu/anBn',1,2),(5,'Stranger Things - Saison 2','https://imgs.search.brave.com/pk0JX2I_A7AUHE3aj2ilNdx1VJrofsNJwaah7V0yYro/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFGWDZ1cDdQaEwu/anBn',2,2),(6,'Stranger Things - Saison 3','https://imgs.search.brave.com/99jnJnZxVJnr85Ei8DXemTECx5VfmnzLwY5dXAIwl1c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFNeGJTdE1aUEwu/anBn',3,2),(7,'Stranger Things - Saison 4','https://imgs.search.brave.com/WWGsesue7W2Sp_6Qrxs0TShOIdzI5C9U6Ug6yhUaRts/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMucG9zdGVycy5j/ei9pbWFnZS8zNTAv/YWZmaWNoZXMtZXQt/cG9zdGVycy9zdHJh/bmdlci10aGluZ3Mt/c2Vhc29uLTQtZXZl/cnktZW5kaW5nLWhh/cy1hLWJlZ2lubmlu/Zy1pMTI5NTgxLmpw/Zw',4,2),(8,'The Last of Us - Saison 1','https://imgs.search.brave.com/PCsXIHCGwNMxs8oPRoNuc03gcCAmYvj63H6rDns0kJ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNS5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9pbWcvZDQv/NmIvZDQ2YjM5MTc3/MzJlMTY0ZTk3YWY1/OWFiYzBiYjM1YmYu/anBlZw',1,3),(9,'The Last of Us - Saison 2','https://imgs.search.brave.com/yNLHOLmSejpxQL8OOd1xVwFOYCyRaQ-rxbULfqWZPdE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNi5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9pbWcvYTkv/ODkvYTk4OTI3N2Yx/ZWYwMWNjOWRjODU0/MWZlNTcxZWFmNWMu/anBn',2,3),(10,'Game of Thrones - Saison 1','https://imgs.search.brave.com/wGf9aIoerjTMW8Zd75Q74VBK8uCMqYS7nvwiPKjGeeo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/MS1wL3NlYXNvbi0x/LXBvc3Rlcl8zdW41/LjEwODAuanBn',1,4),(11,'Game of Thrones - Saison 2','https://imgs.search.brave.com/xanbxg3wy0mgvdHaXPrCBp8KYEBrWwn3rtoQoo8OWZA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/Mi1wL3NlYXNvbi0y/LXBvc3Rlcl9xaDhw/LjEwODAuanBn',2,4),(12,'Game of Thrones - Saison 3','https://imgs.search.brave.com/9qFc1CbF_yDoD6TnK2DceEkVlFDf7KqIaAGITYcTAZg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/My1wL3NlYXNvbi0z/LXBvc3Rlcl94ejZ6/LjEwODAuanBn',3,4),(13,'Game of Thrones - Saison 4','https://imgs.search.brave.com/3-zojFG1TLjIVjXtg4yRSGRasn7dQ94hj1ymEXmD7KI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/NC1wL3NlYXNvbi00/LXBvc3Rlcl9tbjVo/LjEwODAuanBn',4,4),(14,'American Horror Story - Saison 1','\'\'',1,5),(15,'American Horror Story - Saison 2','\'\'',2,5);
+INSERT INTO `saison` VALUES (1,'Breaking Bad - Saison 1','https://fr.web.img3.acsta.net/c_210_280/pictures/18/07/23/11/26/1237965.jpg',1,1),(2,'Breaking Bad - Saison 2','https://imgs.search.brave.com/HvGBolvCva9YfaZ2vDv096cGJfwykVXYc2VwJSFBvVE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNS5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9waWN0dXJl/cy8xOC8wNy8yMy8x/MS8yNi8xNTk3MzQy/LmpwZw',2,1),(3,'Breaking Bad - Saison 3','https://imgs.search.brave.com/ADfjEbVs-v2Dda2ECab7zt_pDrpMy0SeNp0e8orbWmI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nMy5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9waWN0dXJl/cy8xOC8wNy8yMy8x/MS8yNi8yMTY3NjU4/LmpwZw',3,1),(4,'Stranger Things - Saison 1','https://imgs.search.brave.com/ZEwN6RxREUrFVGnQXi1D9bqDUk5eeuwWviG5Uz_mgI4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb3N0/ZXJzLndhYXNhYmku/Y29tL21lZGlhcy8x/NTg2NDYwMzc2ODAu/anBn',1,2),(5,'Stranger Things - Saison 2','https://imgs.search.brave.com/pk0JX2I_A7AUHE3aj2ilNdx1VJrofsNJwaah7V0yYro/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFGWDZ1cDdQaEwu/anBn',2,2),(6,'Stranger Things - Saison 3','https://imgs.search.brave.com/99jnJnZxVJnr85Ei8DXemTECx5VfmnzLwY5dXAIwl1c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFNeGJTdE1aUEwu/anBn',3,2),(7,'Stranger Things - Saison 4','https://imgs.search.brave.com/WWGsesue7W2Sp_6Qrxs0TShOIdzI5C9U6Ug6yhUaRts/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMucG9zdGVycy5j/ei9pbWFnZS8zNTAv/YWZmaWNoZXMtZXQt/cG9zdGVycy9zdHJh/bmdlci10aGluZ3Mt/c2Vhc29uLTQtZXZl/cnktZW5kaW5nLWhh/cy1hLWJlZ2lubmlu/Zy1pMTI5NTgxLmpw/Zw',4,2),(8,'The Last of Us - Saison 1','https://imgs.search.brave.com/PCsXIHCGwNMxs8oPRoNuc03gcCAmYvj63H6rDns0kJ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNS5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9pbWcvZDQv/NmIvZDQ2YjM5MTc3/MzJlMTY0ZTk3YWY1/OWFiYzBiYjM1YmYu/anBlZw',1,3),(9,'The Last of Us - Saison 2','https://imgs.search.brave.com/yNLHOLmSejpxQL8OOd1xVwFOYCyRaQ-rxbULfqWZPdE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nNi5hY3N0/YS5uZXQvcl8xMjgw/XzcyMC9pbWcvYTkv/ODkvYTk4OTI3N2Yx/ZWYwMWNjOWRjODU0/MWZlNTcxZWFmNWMu/anBn',2,3),(10,'Game of Thrones - Saison 1','https://imgs.search.brave.com/wGf9aIoerjTMW8Zd75Q74VBK8uCMqYS7nvwiPKjGeeo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/MS1wL3NlYXNvbi0x/LXBvc3Rlcl8zdW41/LjEwODAuanBn',1,4),(11,'Game of Thrones - Saison 2','https://imgs.search.brave.com/xanbxg3wy0mgvdHaXPrCBp8KYEBrWwn3rtoQoo8OWZA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/Mi1wL3NlYXNvbi0y/LXBvc3Rlcl9xaDhw/LjEwODAuanBn',2,4),(12,'Game of Thrones - Saison 3','https://imgs.search.brave.com/9qFc1CbF_yDoD6TnK2DceEkVlFDf7KqIaAGITYcTAZg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/My1wL3NlYXNvbi0z/LXBvc3Rlcl94ejZ6/LjEwODAuanBn',3,4),(13,'Game of Thrones - Saison 4','https://imgs.search.brave.com/3-zojFG1TLjIVjXtg4yRSGRasn7dQ94hj1ymEXmD7KI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2ZyL3NjcmVlbnNo/b3Qvcy9zZWFzb24t/NC1wL3NlYXNvbi00/LXBvc3Rlcl9tbjVo/LjEwODAuanBn',4,4),(14,'American Horror Story - Saison 1','',1,5),(15,'American Horror Story - Saison 2','',2,5);
 /*!40000 ALTER TABLE `saison` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `serie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `titre` varchar(30) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '''''',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `tags` (
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +250,7 @@ CREATE TABLE `tags` (
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-INSERT INTO `tags` VALUES ('Action',5),('Années 80',11),('Aventure',10),('Crime',9),('Drame',1),('Fantastique',4),('Horreur',6),('Mystère',7),('Politique',12),('Post-apocalyptique',8),('Psychologique',15),('Romance',13),('Science-fiction',2),('Survie',14),('Thriller',3);
+INSERT INTO `tags` VALUES ('Action',5),('Années 80',11),('Aventure',10),('Crime',9),('Drame',1),('Fantastique',4),('Horreur',6),('Politique',12),('Post-apocalyptique',8),('Psychologique',15),('Romance',13),('Science-fiction',2),('Survie',14),('Thriller',3);
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -263,4 +263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 16:28:47
+-- Dump completed on 2025-05-07  0:10:18

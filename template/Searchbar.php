@@ -1,4 +1,9 @@
 <?php
+/**
+ * This class is responsible for rendering a search bar.
+ *
+ * @author Adrien
+ */
 class Searchbar
 {
     public static function render(): void

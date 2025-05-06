@@ -39,7 +39,12 @@ if ($_GET['type'] === 'series') {
             $s = $serie->getSaisons();
             $url = "https://imgs.search.brave.com/wqbY8jUBNeP9PAHUxDXaljWaHrLhS7xWbq4RMDe92bE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMtY2RuLjEyM3Jm/LmNvbS91aS1jb21w/b25lbnRzL2Fzc2V0/cy9zdmcvYWxsLWlt/YWdlcy5zdmc";
             if(!empty($s)) {
-                $url = $s[0]->getAffiche();
+                foreach ($s as $saison) {
+                    if (!empty($saison->getAffiche())) {
+                        $url = $saison->getAffiche();
+                        break;
+                    }
+                }
             }
             $pageContent . ResultBox::render(
                 $serie->getId(),
@@ -55,13 +60,32 @@ if ($_GET['type'] === 'series') {
     if (empty($saisons)) {
         $pageContent = "<p>Aucune saison trouvée pour cette série.</p>";
     }else{
+        usort($saisons, function ($a, $b) {
+            return $a->getNumero() <=> $b->getNumero();
+        });
         foreach ($saisons as $saison) {
+            $castings = $saison->getCasting();
+            $castingsString = "";
+            if (!empty($castings)) {
+                foreach ($castings as $casting) {
+                    $castingsString .= $casting->getNom() . ", ";
+                }
+                $castingsString = rtrim($castingsString, ", ");
+                if (strlen($castingsString) > 50) {
+                    $castingsString = substr($castingsString, 0, 47) . "...";
+                }
+            }
+            $url = "https://imgs.search.brave.com/wqbY8jUBNeP9PAHUxDXaljWaHrLhS7xWbq4RMDe92bE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMtY2RuLjEyM3Jm/LmNvbS91aS1jb21w/b25lbnRzL2Fzc2V0/cy9zdmcvYWxsLWlt/YWdlcy5zdmc";
+            if (!empty($saison->getAffiche())) {
+                $url = $saison->getAffiche();
+            }
             $pageContent . ResultBox::render(
                 $saison->getId(),
                 $saison->getTitre(),
                 NULL,
-                $saison->getAffiche(),
-                "saisons"
+                $url,
+                "saisons",
+                $castingsString
             );
         }
     }
@@ -71,13 +95,29 @@ if ($_GET['type'] === 'series') {
     if (empty($episodes)) {
         $pageContent = "<p>Aucun épisode trouvé pour cette saison.</p>";
     }else{
+        usort($episodes, function ($a, $b) {
+            return $a->getNumero() <=> $b->getNumero();
+        });
         foreach ($episodes as $episode) {
+            $director = $episode->getRealisateurs();
+            $directorsString = "";
+            if (!empty($director)) {
+                foreach ($director as $realisateur) {
+                    $directorsString .= $realisateur->getNom() . ", ";
+                }
+                $directorsString = rtrim($directorsString, ", ");
+                if (strlen($directorsString) > 50) {
+                    $directorsString = substr($directorsString, 0, 47) . "...";
+                }
+            }
             $pageContent . ResultBox::render(
                 $episode->getId(),
                 $episode->getTitre(),
                 NULL,
                 "",
-                "episodes"
+                "episodes",
+                $directorsString,
+                $episode->getSynopsis()
             );
         }
     }

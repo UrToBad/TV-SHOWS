@@ -1,3 +1,10 @@
+/**
+ * Add listeners to the search input field
+ *
+ * This function saves the search value in local storage and updates the URL when the user presses Enter.
+ *
+ * @author Charles
+ */
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search_tag");
 

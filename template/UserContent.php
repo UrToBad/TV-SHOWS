@@ -1,6 +1,11 @@
 <?php
 require_once ("Head.php");
 
+/**
+ * This class is responsible for rendering the user content.
+ *
+ * @author Adrien
+ */
 class userContent
 {
     public static function render(string $content): void
@@ -32,7 +37,9 @@ class userContent
                 ?>
             </div>
 
-            <div id="footer">source : t'inquiètes</div>
+            <div id="footer">
+                <p>&copy; 2000 'n GUS, since 1547. Tous droits réservés. Conception par l'équipe GUS. <a href="">Mentions légales</a> | <a href="">Contact</a></p>
+            </div>
         </body>
 
         </html>

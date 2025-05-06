@@ -7,6 +7,7 @@ require_once 'class/Tag.php';
  * This class represents a controller for managing tags.
  *
  * @author Charles
+ * @author Sulyvan
  */
 class TagController
 {
@@ -74,50 +75,6 @@ class TagController
     }
 
     /**
-     * Get a tag by its ID.
-     *
-     * @param int $id The ID of the tag.
-     * @return Tag|null The tag data or null if not found.
-     */
-    public function getTagById(int $id): ?Tag
-    {
-        $sql = "SELECT * FROM tags WHERE id = :id";
-        $stmt = $this->db->query($sql, [
-            'id' => $id
-        ]);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        return new Tag($result['id'], $result['nom']);
-    }
-
-    /**
-     * Get a tag by its name.
-     *
-     * @param string $nom The name of the tag.
-     * @return Tag|null The tag data or null if not found.
-     */
-    public function getTagByName(string $nom): ?Tag
-    {
-        $sql = "SELECT * FROM tags WHERE nom = :nom";
-        $stmt = $this->db->query($sql, [
-            'nom' => $nom
-        ]);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        return new Tag($result['id'], $result['nom']);
-    }
-
-    /**
      * Add a new tag.
      *
      * @param string $nom The name of the tag to add.
@@ -138,28 +95,17 @@ class TagController
      * @param int $id The ID of the tag to remove.
      * @return bool True on success, false on failure.
      */
-    public function removeTagById(int $id): bool
+    public function deleteById(int $id): bool
     {
-        $sql = "DELETE FROM tags WHERE id = :id";
-        $stmt = $this->db->query($sql, [
+        $sql = "DELETE FROM series_tags WHERE tag_id = :id";
+        $this->db->query($sql, [
             'id' => $id
         ]);
-        return $stmt->rowCount() > 0;
-    }
-
-    /**
-     * Remove a tag by its name.
-     *
-     * @param string $nom The name of the tag to remove.
-     * @return bool True on success, false on failure.
-     */
-    public function removeTagByName(string $nom): bool
-    {
-        $sql = "DELETE FROM tags WHERE nom = :nom";
-        $stmt = $this->db->query($sql, [
-            'nom' => $nom
+        $sql = "DELETE FROM tags WHERE id = :id";
+        $this->db->query($sql, [
+            'id' => $id
         ]);
-        return $stmt->rowCount() > 0;
+        return true;
     }
 
     /**

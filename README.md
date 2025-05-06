@@ -31,6 +31,7 @@ Ce projet est une application web permettant de gérer et de consulter des infor
    ```bash
     php -S localhost:8000
     ```
+⚠️. Assurez-vous que le serveur web pointe vers le répertoire racine du projet.
    
 ## Contributeurs
 

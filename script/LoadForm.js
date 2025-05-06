@@ -1,3 +1,10 @@
+/**
+ * Adds an event listener to the button with id "addButton".
+ *
+ * This function fetches a form from the server when the button is clicked.
+ *
+ * @author Charles
+ */
 document.getElementById("addButton").addEventListener("click", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type');

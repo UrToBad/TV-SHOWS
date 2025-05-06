@@ -1,3 +1,10 @@
+/**
+ * Add a click event listener to the logo element
+ *
+ * This function redirects the user to the index page and clears the search input value.
+ *
+ * @author Charles
+ */
 document.addEventListener("DOMContentLoaded", () => {
     const logo = document.getElementById("logo");
 

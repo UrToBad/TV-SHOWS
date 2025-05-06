@@ -1,6 +1,12 @@
 <?php
 require_once("Searchbar.php");
 require_once("Form.php");
+
+/**
+ * This class is responsible for rendering the head section of the page.
+ *
+ * @author Adrien
+ */
 class head
 {
     public static function render(): void

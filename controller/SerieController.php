@@ -9,6 +9,7 @@ require_once 'controller/TagController.php';
  * This class represents a controller for managing series.
  *
  * @author Charles
+ * @author Sulyvan
  */
 class SerieController
 {
@@ -57,58 +58,11 @@ class SerieController
     }
 
     /**
-     * Get a series by its ID.
+     * Get series starting with a specific name.
      *
-     * @param int $id The ID of the series.
-     * @return Serie|null The series data or null if not found.
+     * @param string $name The name to search for.
+     * @return array|null An array of series or null if not found.
      */
-    public function getSerieById(int $id): ?Serie
-    {
-        $sql = "SELECT * FROM serie WHERE id = :id";
-        $stmt = $this->db->query($sql, ['id' => $id]);
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
-        if(empty($tags)) {
-            $tags = [];
-        }
-        $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
-        if(empty($saisons)) {
-            $saisons = [];
-        }
-
-        return new Serie($result['id'], $result['titre'], $tags, $saisons);
-    }
-
-    /**
-     * Get a series by its name.
-     *
-     * @param string $name The name of the series.
-     * @return Serie|null The series data or null if not found.
-     */
-    public function getSerieByName(string $name): ?Serie
-    {
-        $sql = "SELECT * FROM serie WHERE titre = :name";
-        $stmt = $this->db->query($sql, ['name' => $name]);
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            return null;
-        }
-
-        $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
-        $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
-
-        return new Serie($result['id'], $result['titre'], $tags, $saisons);
-    }
-
-
     public function getSeriesStartingBy(string $name): ?array
     {
         $sql = "SELECT * FROM serie WHERE titre LIKE :name";
@@ -131,18 +85,20 @@ class SerieController
 
     /**
      * Add a new series.
-     * @param Serie $serie The series object to add.
+     * @param string $titre The title of the series.
+     * @param array|null $tags An array of tags associated with the series.
+     * @param array|null $saisons An array of seasons associated with the series.
      * @return bool True on success, false on failure.
      */
     public function addSerie(string $titre, ?array $tags = NULL, ?array $saisons = NULL): bool
     {
         $sql = "INSERT INTO serie (titre) VALUES (:titre)";
-        $stmt = $this->db->query($sql, ['titre' => $titre]);
+        $this->db->query($sql, ['titre' => $titre]);
         $tagController = new TagController($this->db);
         foreach ($tags as $tag) {
             $tagController->addTagToSerie($titre, $tag);
         }
-        return $stmt->rowCount() > 0;
+        return true;
     }
 
     /**
@@ -153,15 +109,12 @@ class SerieController
      */
     public function deleteById(int $id): bool
     {
-        // Supprimer les saisons associées
         $saisonController = new SaisonController($this->db);
         $saisonController->deleteAllSeasonsBySerieId($id);
 
-        // Supprimer les tags associés
         $tagController = new TagController($this->db);
         $tagController->deleteTags($id);
 
-        // Supprimer la série
         $sql = "DELETE FROM serie WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
 

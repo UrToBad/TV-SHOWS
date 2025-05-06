@@ -1,3 +1,8 @@
+/**
+ * Attaches click event listeners to result boxes.
+ *
+ * @author Charles
+ */
 function attachResultBoxListeners() {
     const resultBoxes = document.querySelectorAll('.result_box');
 
@@ -18,6 +23,11 @@ function attachResultBoxListeners() {
     });
 }
 
+/**
+ * Attaches click event listeners to delete icons.
+ *
+ * @author Charles
+ */
 function deleteItemEvents() {
     const deleteIcons = document.querySelectorAll('.delete-icon');
 
@@ -27,6 +37,12 @@ function deleteItemEvents() {
     });
 }
 
+/**
+ * Handles the click event for delete icons.
+ * @param event - The click event.
+ *
+ * @author Charles
+ */
 function handleDeleteClick(event) {
     event.stopPropagation();
 
@@ -52,11 +68,21 @@ function handleDeleteClick(event) {
     }
 }
 
+/**
+ * Re-attaches event listeners to result boxes and delete icons.
+ *
+ * @author Charles
+ */
 function reAttachEvents(){
     attachResultBoxListeners()
     deleteItemEvents()
 }
 
+/**
+ * Initializes the event listeners when the DOM is fully loaded.
+ *
+ * @author Charles
+ */
 document.addEventListener('DOMContentLoaded', () => {
     reAttachEvents()
 });

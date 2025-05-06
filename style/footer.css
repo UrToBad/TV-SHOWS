@@ -1,15 +1,8 @@
 :root{
-    --bgColor: #010004;
-    --contentBgColor: #02011a;
-    --titleBgColor: #4861aa;
-    --loginBgColor: #49419d;
-    --loginButtonBgColor: #120f35;
-    --searchBgColor: #766c93;
-    --resultBgColor: #24204f;
-    --resultColor: #2a2377;
-    --footerColor: #09081e;
-    --textColor: #e2e2ff;
-    --loginButtonColor: #c1c1c14f;
+    --bgColor: #06050e;
+    --secondaryColor: #21212d;
+    --tertiaryColor: #121221;
+    --textColor: #ffffff;
 }
 
 #footer {
@@ -20,5 +13,5 @@
     width: 100%;
     height: 5%;
 
-    background-color: var(--footerColor);
+    background-color: var(--secondaryColor);
 }

@@ -7,6 +7,7 @@ class Searchbar
         <div id="searchbar">
             <div class="search_item">
                 <input type="text" id="search_tag" class="search_input" placeholder="Rechercher...">
+                
                 <?php
                 if (session_status() === PHP_SESSION_NONE) session_start();
                     $addButton = !empty($_SESSION['connecte']) ? "<span id='addButton' class='addButton'>➕</span>" : ""; ?>

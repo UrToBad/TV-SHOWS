@@ -40,6 +40,13 @@ class head
             </div>
         </div>
         <?php
-        Searchbar::render();
+        Searchbar::render(); ?>
+        <div id="categories">
+            <button type="acteur">Acteur</button>
+            <button type="réalisateur">Réalisateur</button>
+            <button type="séries">Séries</button>
+            <button type="tags">Tags</button>           
+        </div>
+    <?php 
     }
 }

@@ -1,16 +1,14 @@
 :root{
-    --bgColor: #010004;
-    --contentBgColor: #02011a;
-    --titleBgColor: #4861aa;
-    --loginBgColor: #49419d;
-    --loginButtonBgColor: #120f35;
-    --searchBgColor: #766c93;
-    --resultBgColor: #24204f;
-    --resultColor: #2a2377;
-    --footerColor: #09081e;
-    --textColor: #e2e2ff;
-    --loginButtonColor: #c1c1c14f;
+    --bgColor: #06050e;
+    --secondaryColor: #21212d;
+    --tertiaryColor: #121221;
+    --textColor: #ffffff;
 }
+
+@font-face {
+    font-family: 'Avantgarde';
+    src: url('/assets/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+  }
 
 html {
     background-color: var(--bgColor);
@@ -20,6 +18,7 @@ html {
     height: 100%;
     width: 100%;
     color: var(--textColor);
+    font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
 
 body {
@@ -45,7 +44,7 @@ body {
     width: 90%;
     height: 75%;
 
-    background-color: var(--contentBgColor);
+    background-color: var(--bgColor);
     overflow: auto;
     scrollbar-width: none;
 }

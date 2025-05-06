@@ -6,6 +6,9 @@ require_once 'class/DatabaseConnection.php';
 require_once 'controller/SerieController.php';
 require_once 'controller/SaisonController.php';
 require_once 'controller/EpisodeController.php';
+require_once 'controller/ActeurController.php';
+require_once 'controller/RealisateurController.php';
+require_once 'controller/TagController.php';
 
 if (!isset($_GET['type'])) {
     header('Location: index.php?type=series');
@@ -18,6 +21,9 @@ $connection = new DatabaseConnection($sqlCredentials);
 $serieController = new SerieController($connection);
 $saisonController = new SaisonController($connection);
 $episodeController = new EpisodeController($connection);
+$acteurController = new ActeurController($connection);
+$realisateurController = new RealisateurController($connection);
+$tagController = new TagController($connection);
 
 ob_start();
 
@@ -70,12 +76,57 @@ if ($_GET['type'] === 'series') {
                 $episode->getId(),
                 $episode->getTitre(),
                 NULL,
-                "https://example.com/episode-image.jpg",
+                "",
                 "episodes"
             );
         }
     }
 
+} elseif ($_GET['type'] === 'acteurs') {
+    $acteurs = $search ? $acteurController->getActeursStartingBy($search) : $acteurController->getAllActeurs();
+    if (empty($acteurs)) {
+        $pageContent = "<p>Aucun acteur trouvé.</p>";
+    } else {
+        foreach ($acteurs as $acteur) {
+            $pageContent . ResultBox::render(
+                $acteur->getId(),
+                $acteur->getNom(),
+                NULL,
+                $acteur->getPhoto(),
+                "acteurs"
+            );
+        }
+    }
+}elseif($_GET['type'] === 'realisateurs'){
+    $realisateurs = $search ? $realisateurController->getRealisateursStartingBy($search) : $realisateurController->getAllRealisateurs();
+    if (empty($realisateurs)) {
+        $pageContent = "<p>Aucun réalisateur trouvé.</p>";
+    } else {
+        foreach ($realisateurs as $realisateur) {
+            $pageContent . ResultBox::render(
+                $realisateur->getId(),
+                $realisateur->getNom(),
+                NULL,
+                $realisateur->getPhoto(),
+                "realisateurs"
+            );
+        }
+    }
+}elseif($_GET['type'] === 'tags'){
+    $tags = $search ? $tagController->getTagsStartingBy($search) : $tagController->getAllTags();
+    if (empty($tags)) {
+        $pageContent = "<p>Aucun tag trouvé.</p>";
+    } else {
+        foreach ($tags as $tag) {
+            $pageContent . ResultBox::render(
+                $tag->getId(),
+                $tag->getNom(),
+                NULL,
+                "https://cdn-icons-png.flaticon.com/512/29/29667.png",
+                "tags"
+            );
+        }
+    }
 } else {
     $pageContent = "<p>Type inconnu ou paramètre manquant.</p>";
 }

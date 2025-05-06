@@ -1,15 +1,8 @@
-:root{
-    --bgColor: #06050e;
-    --secondaryColor: #21212d;
-    --tertiaryColor: #121221;
-    --textColor: #ffffff;
-}
-
 #form {
     position: absolute;
     width: 60%;
     height: auto;
-    background: linear-gradient(135deg, #21212d, #121221);
+    background: linear-gradient(135deg, #4a90e2, #8e44ad);
     color: white;
     z-index: 9999;
     top: 50%;
@@ -17,9 +10,9 @@
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(145, 142, 142, 0.438);
-    opacity: 0; 
-    animation: fadeIn 0.5s ease forwards; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Initialement invisible */
+    animation: fadeIn 0.5s ease forwards; /* Animation */
 }
 
 @keyframes fadeIn {
@@ -32,7 +25,8 @@
 }
 
 #form:hover {
-    box-shadow: 0 12px 20px #0aa13c50;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .form {
@@ -64,6 +58,7 @@
 }
 
 .input option:checked {
+    background-color: #4a90e2; /* Couleur pour les options sélectionnées */
     color: white;
 }
 
@@ -74,13 +69,13 @@
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(135deg, #24b143, #0aa13c);
+    background: linear-gradient(135deg, #8e44ad, #4a90e2);
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
 #submit_button:hover {
-    background: linear-gradient(135deg, #0aa13c, #24b143);
+    background: linear-gradient(135deg, #4a90e2, #8e44ad);
     transform: scale(1.01);
 }
 

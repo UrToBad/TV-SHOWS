@@ -8,11 +8,13 @@ class head
         ?>
         <link rel="stylesheet" href="style/head.css">
         <div id="header_high">
-            <div id="logo"></div>
-            <div id="page_title">
-                <h1>2000 'n GUS, since 1547</h1>
+            <div id="title_design">
+                <div id="logo"></div>
+                <div id="page_title">
+                    <h1>2000 'n GUS, since 1547</h1>
+                </div>
             </div>
-            <div id="header_button"><?php
+            <div id="header_design"><div id="header_button"><?php
                 if(session_status() == PHP_SESSION_NONE) session_start();
                 if (isset($_SESSION["connecte"])==null){
                     $_SESSION["connecte"]=false;
@@ -34,17 +36,28 @@ class head
                     </form>
                 <?php
                 }
-            ?></div>
-            
+                ?></div>
+            </div>
         </div>
         <?php
         Searchbar::render(); ?>
         <div id="categories">
-            <button type="acteur">Acteur</button>
-            <button type="réalisateur">Réalisateur</button>
-            <button type="séries">Séries</button>
-            <button type="tags">Tags</button>           
+            <button type="acteur" onclick="clearSearchAndRedirect('index.php?type=acteurs')">Acteurs</button>
+            <button type="realisateur" onclick="clearSearchAndRedirect('index.php?type=realisateurs')">Réalisateurs</button>
+            <button type="series" onclick="clearSearchAndRedirect('index.php?type=series')">Séries</button>
+            <button type="tags" onclick="clearSearchAndRedirect('index.php?type=tags')">Tags</button>
         </div>
+
+        <script>
+            function clearSearchAndRedirect(url) {
+                const searchInput = document.getElementById("search_tag");
+                if (searchInput) {
+                    localStorage.removeItem("searchValue");
+                    searchInput.value = "";
+                }
+                window.location.href = url;
+            }
+        </script>
     <?php 
     }
 }

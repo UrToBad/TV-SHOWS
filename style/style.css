@@ -19,16 +19,6 @@ html {
     width: 100%;
     color: var(--textColor);
     font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-* {
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3;
-    -ms-transition: all 0.3;
-    -o-transition: all 0.23;
-    transition: all 0.3;
 }
 
 body {

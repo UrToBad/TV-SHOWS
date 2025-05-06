@@ -161,6 +161,30 @@ class RealisateurController
     }
 
     /**
+     * Get all directors starting with a specific name.
+     * @param string $nom The name to search for.
+     * @return array|null An array of directors or null if not found.
+     */
+    public function getRealisateursStartingBy(string $nom): ?array
+    {
+        $sql = "SELECT * FROM realisateur WHERE nom LIKE :nom";
+        $stmt = $this->db->query($sql, [
+            'nom' => $nom . '%'
+        ]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return null;
+        }
+
+        $realisateurs = [];
+        foreach ($results as $row) {
+            $realisateurs[] = new Realisateur($row['id'], $row['nom'], $row['photo']);
+        }
+        return $realisateurs;
+    }
+
+    /**
      * Add a director to an episode.
      *
      * @param int $episodeId The ID of the episode.

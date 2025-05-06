@@ -19,11 +19,11 @@
     background-color: var(--tertiaryColor);
     box-shadow: 10px 5px 5px var(--bgColor);
     transition: transform 0.1s ease;
-
 }
 
 .result_box:hover {
     transform: scale(1.01);
+    filter: saturate(150%);
 }
 
 .result_box_tags {
@@ -67,7 +67,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
-    font-size: 1.5em;
+    font-size: 1.2em;
 
     background-color: var(--secondaryColor);
 }
@@ -83,10 +83,6 @@
     border: none;
     padding: 5px;
     transition: transform 0.2s, background-color 0.2s;
-}
-
-.result_box .delete-icon:hover {
-    transform: scale(1.2);
 }
 
 @media screen and (max-width:1000px) {

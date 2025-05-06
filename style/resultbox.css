@@ -19,7 +19,7 @@
     background-color: var(--tertiaryColor);
     box-shadow: 10px 5px 5px var(--bgColor);
     transition: transform 0.1s ease;
-    z-index: 20;
+
 }
 
 .result_box:hover {

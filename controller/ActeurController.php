@@ -160,30 +160,6 @@ class ActeurController
         return $acteurs;
     }
 
-
-    /**
-     * Get actors starting with a specific name.
-     *
-     * @param string $name The name to search for.
-     * @return array|null An array of actors or null if not found.
-     */
-    public function getActeursStartingBy(string $name): ?array
-    {
-        $sql = "SELECT * FROM acteur WHERE nom LIKE :name";
-        $stmt = $this->db->query($sql, ['name' => $name . '%']);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$results) {
-            return null;
-        }
-
-        $acteurs = [];
-        foreach ($results as $row) {
-            $acteurs[] = new Acteur($row['id'], $row['nom'], $row['photo']);
-        }
-        return $acteurs;
-    }
-
     public function addActeurToSeason($saison_id, $acteur_id): bool
     {
         $sql = "INSERT INTO acteurs_saisons (saison_id, acteur_id) VALUES (:saison_id, :acteur_id)";

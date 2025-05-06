@@ -5,8 +5,9 @@ class resultBox
     {
         $tagprint = "";
         if ($tags != NULL) {
-            $tagNames = array_map(fn($tag) => htmlspecialchars($tag->getNom()), $tags);
-            $tagprint = implode(", ", $tagNames);
+            foreach ($tags as $tag) {
+                $tagprint .= htmlspecialchars($tag->getNom()) . ", ";
+            }
         }
         
         { ?>

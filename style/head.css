@@ -29,7 +29,6 @@
     width: 60% ;
     height: 20px;
 
-
     justify-content: center;
     align-items: center;
     padding-left: 20%;
@@ -38,7 +37,7 @@
     padding-bottom: 5px;
 
     background-color: #21212d;
-    box-shadow: 0px 10px 10px rgba(255, 255, 255, 0.493);
+    box-shadow: 0px 10px 10px #ffffff46;
     z-index: 10;
 }
 
@@ -49,39 +48,14 @@
     justify-content: center;
     align-items: center;
     border : None;
-}
-
-#header_design {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0px;
-    border-bottom-left-radius: 50px;
-    width: 80%;
-    height: 100%;
-    background-color: var(--secondaryColor);
-}
-
-#title_design {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    padding-left: 20px;
-    padding-right: 20px;
-
-    width: 100%;
-    height: 100%;
-    background-color: var(--secondaryColor);
+    letter-spacing: 1px;
 }
 
 #header_high {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
 
     width: 100%;
     height: 50%;
@@ -96,14 +70,16 @@
     justify-content: center;
     margin-left: 20px;
     margin-right: 20px;
-    border-top-right-radius: 50px;
     padding-left: 20px;
     padding-right: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-51%);
 
-    width: 100%;
-    height: 100%;
 
-    background-color: var(--secondaryColor);
+    width: 40%;
+
+
 
     font-size: clamp(5px,15px,20px);
     color: white;
@@ -113,14 +89,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+
     margin-right: 0px;
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
+    margin-left: 10px;
     border-radius: 50px;
 
-    width: 40%;
+    width: 20%;
     height: 40%;
 
     background-color: var(--loginButtonColor);
@@ -139,6 +116,10 @@
     margin-top: 2px;
     border: none;
     outline: none;
+}
+
+#header input {
+    padding-left: 10px;
 }
 
 #header_button button {

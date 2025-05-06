@@ -162,29 +162,6 @@ class TagController
         return $stmt->rowCount() > 0;
     }
 
-    /**
-     * Get tags starting with a specific name.
-     *
-     * @param string $name The name to search for.
-     * @return array|null An array of tags starting with the specified name or null if not found.
-     */
-    public function getTagsStartingBy(string $name): ?array
-    {
-        $sql = "SELECT * FROM tags WHERE nom LIKE :name";
-        $stmt = $this->db->query($sql, ['name' => $name . '%']);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$results) {
-            return null;
-        }
-
-        $tags = [];
-        foreach ($results as $row) {
-            $tags[] = new Tag($row['id'], $row['nom']);
-        }
-        return $tags;
-    }
-
 
     /**
      * Add a tag to a series.

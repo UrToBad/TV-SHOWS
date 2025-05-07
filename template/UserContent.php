@@ -38,7 +38,7 @@ class userContent
             </div>
 
             <div id="footer">
-                <p>&copy; 2000 'n GUS, since 1547. Tous droits réservés. Conception par l'équipe GUS. <a href="">Mentions légales</a> | <a href="">Contact</a></p>
+                <p>&copy; 2000 'n GUS, since 1547. Tous droits réservés. Conception par l'équipe GUS. <a href="legals.php">Mentions légales</a> | <a href="">Contact</a></p>
             </div>
         </body>
 

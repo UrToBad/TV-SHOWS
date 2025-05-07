@@ -64,6 +64,7 @@
 }
 
 .input option:checked {
+    background-color: var(--secondaryColor);
     color: white;
 }
 

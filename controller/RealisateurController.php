@@ -69,6 +69,27 @@ class RealisateurController
     }
 
     /**
+     * Get a director by its ID.
+     *
+     * @param int $id The ID of the director.
+     * @return Realisateur|null The director object or null if not found.
+     */
+    public function getRealisateurById(int $id): ?Realisateur
+    {
+        $sql = "SELECT * FROM realisateur WHERE id = :id";
+        $stmt = $this->db->query($sql, [
+            'id' => $id
+        ]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new Realisateur($result['id'], $result['nom'], $result['photo']);
+    }
+
+    /**
      * Get all director by episode ID.
      *
      * @param int $episodeId The ID of the episode.
@@ -109,6 +130,17 @@ class RealisateurController
         $this->db->query($sql, [
             'nom' => $name,
             'photo' => $photo
+        ]);
+        return true;
+    }
+
+    public function editRealisateur(int $id, string $name, string $photo): bool
+    {
+        $sql = "UPDATE realisateur SET nom = :nom, photo = :photo WHERE id = :id";
+        $this->db->query($sql, [
+            'nom' => $name,
+            'photo' => $photo,
+            'id' => $id
         ]);
         return true;
     }
@@ -186,6 +218,21 @@ class RealisateurController
         $this->db->query($sql, [
             'episodeId' => $episodeId,
             'realisateurId' => $realisateurId
+        ]);
+        return true;
+    }
+
+    /**
+     * Remove all directors from an episode.
+     *
+     * @param int $episodeId The ID of the episode.
+     * @return bool True on success, false on failure.
+     */
+    public function removeAllRealisateursFromEpisode(int $episodeId): bool
+    {
+        $sql = "DELETE FROM realisateurs_episodes WHERE episode_id = :episodeId";
+        $this->db->query($sql, [
+            'episodeId' => $episodeId
         ]);
         return true;
     }

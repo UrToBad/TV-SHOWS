@@ -58,6 +58,34 @@ class SerieController
     }
 
     /**
+     * Get a series by its ID.
+     *
+     * @param int $id The ID of the series.
+     * @return Serie|null The series object or null if not found.
+     */
+    public function getSerieById(int $id): ?Serie
+    {
+        $sql = "SELECT * FROM serie WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $tags = (new TagController($this->db))->getAllTagsBySerieId($result['id']);
+        if(empty($tags)) {
+            $tags = [];
+        }
+        $saisons = (new SaisonController($this->db))->getAllSeasonsBySerieId($result['id']);
+        if(empty($saisons)) {
+            $saisons = [];
+        }
+        return new Serie($result['id'], $result['titre'], $tags, $saisons);
+    }
+
+    /**
      * Get series starting with a specific name.
      *
      * @param string $name The name to search for.
@@ -95,6 +123,27 @@ class SerieController
         $sql = "INSERT INTO serie (titre) VALUES (:titre)";
         $this->db->query($sql, ['titre' => $titre]);
         $tagController = new TagController($this->db);
+        foreach ($tags as $tag) {
+            $tagController->addTagToSerie($titre, $tag);
+        }
+        return true;
+    }
+
+    /**
+     * Edit a series by its ID.
+     *
+     * @param int $id The ID of the series to edit.
+     * @param string $titre The new title of the series.
+     * @param array|null $tags An array of tags associated with the series.
+     * @return bool True on success, false on failure.
+     */
+    public function editSerie(int $id, string $titre, ?array $tags = NULL): bool
+    {
+        $sql = "UPDATE serie SET titre = :titre WHERE id = :id";
+        $this->db->query($sql, ['titre' => $titre, 'id' => $id]);
+
+        $tagController = new TagController($this->db);
+        $tagController->deleteTags($id);
         foreach ($tags as $tag) {
             $tagController->addTagToSerie($titre, $tag);
         }

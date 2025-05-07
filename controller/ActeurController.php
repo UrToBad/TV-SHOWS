@@ -47,6 +47,25 @@ class ActeurController
     }
 
     /**
+     * Get an actor by its ID.
+     *
+     * @param int $id The ID of the actor.
+     * @return Acteur|null The actor object or null if not found.
+     */
+    public function getActeurById(int $id): ?Acteur
+    {
+        $sql = "SELECT * FROM acteur WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new Acteur($result['id'], $result['nom'], $result['photo']);
+    }
+
+    /**
      * Add a new actor.
      *
      * @param string $name The name of the actor.
@@ -59,6 +78,17 @@ class ActeurController
         $this->db->query($sql, [
             'nom' => $name,
             'photo' => $photo
+        ]);
+        return true;
+    }
+
+    public function editActeur(int $id, string $name, string $photo): bool
+    {
+        $sql = "UPDATE acteur SET nom = :nom, photo = :photo WHERE id = :id";
+        $this->db->query($sql, [
+            'nom' => $name,
+            'photo' => $photo,
+            'id' => $id
         ]);
         return true;
     }
@@ -108,6 +138,24 @@ class ActeurController
         return $acteurs;
     }
 
+    /**
+     * Get an actor by its name.
+     *
+     * @param string $nom The name of the actor.
+     * @return Acteur|null The actor object or null if not found.
+     */
+    public function getActeurByNom(string $nom)
+    {
+        $sql = "SELECT * FROM acteur WHERE nom = :nom";
+        $stmt = $this->db->query($sql, ['nom' => $nom]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new Acteur($result['id'], $result['nom'], $result['photo']);
+    }
 
     /**
      * Get actors starting with a specific name.
@@ -140,6 +188,21 @@ class ActeurController
             'acteur_id' => $acteur_id
         ]);
         return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Remove all actors from a season.
+     *
+     * @param int $saison_id The ID of the season.
+     * @return bool True on success, false on failure.
+     */
+    public function removeAllActeursFromSeason($saison_id): bool
+    {
+        $sql = "DELETE FROM acteurs_saisons WHERE saison_id = :saison_id";
+        $this->db->query($sql, [
+            'saison_id' => $saison_id
+        ]);
+        return true;
     }
 
     public function removeActeurFromSeason($saison_id, $acteur_id): bool

@@ -91,6 +91,23 @@ if ($_GET['type'] === 'series') {
     }
 } elseif ($_GET['type'] === 'episodes' && isset($_GET['id'])) {
     $saisonId = intval($_GET['id']);
+    $castings = $saisonController->getSeasonById($saisonId)->getCasting();
+    $castingsString = "Castings de la saison : <br>";
+    if (!empty($castings)) {
+        foreach ($castings as $casting) {
+            $castingsString .= $casting->getNom() . ", ";
+        }
+        $castingsString = rtrim($castingsString, ", ");
+    }
+    $pageContent . ResultBox::render(
+        -1,
+        "Casting",
+        NULL,
+        NULL,
+        "episodes",
+        NULL,
+        $castingsString
+    );
     $episodes = $search ? $episodeController->getEpisodesStartingBy($saisonId, $search) : $episodeController->getAllEpisodesBySeasonId($saisonId);
     if (empty($episodes)) {
         $pageContent = "<p>Aucun épisode trouvé pour cette saison.</p>";

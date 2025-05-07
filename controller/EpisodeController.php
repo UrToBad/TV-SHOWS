@@ -76,6 +76,44 @@ class EpisodeController
     }
 
     /**
+     * Gets an episode by its ID.
+     * @param int $id The ID of the episode.
+     * @return Episode|null The episode object or null if not found.
+     */
+    public function getEpisodeById(int $id): ?Episode
+    {
+        $sql = "SELECT * FROM episode WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $realisateurs = (new RealisateurController($this->db))->getRealisateursByEpisodeId($result['id']);
+        $realisateurs = $realisateurs ?? [];
+        return new Episode($result['id'], $result['numero'], $result['titre'], $result['synopsis'], $result['duree'], $realisateurs);
+    }
+
+    /**
+     * Gets the season ID by episode ID.
+     * @param int $id The ID of the episode.
+     * @return int|null The ID of the season or null if not found.
+     */
+    public function getSaisonIdByEpisodeId(int $id): ?int
+    {
+        $sql = "SELECT saison_id FROM episode WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return (int)$result['saison_id'];
+    }
+
+    /**
      * Gets all episodes by their season ID and title starting with a specific string.
      * @param int $saisonId The ID of the season.
      * @param string $name The starting string of the episode title.
@@ -136,6 +174,27 @@ class EpisodeController
 
         return true;
 
+    }
+
+    public function editEpisode(int $id, string $titre, int $numero, ?string $synopsis = NULL, ?int $duree = NULL, ?array $realisateurs = NULL): bool
+    {
+        $sql = "UPDATE episode SET titre = :titre, numero = :numero, synopsis = :synopsis, duree = :duree WHERE id = :id";
+        $this->db->query($sql, [
+            'id' => $id,
+            'titre' => $titre,
+            'numero' => $numero,
+            'synopsis' => $synopsis,
+            'duree' => $duree
+        ]);
+        $realisateurController = new RealisateurController($this->db);
+        $realisateurController->removeAllRealisateursFromEpisode($id);
+        if($realisateurs){
+            foreach ($realisateurs as $realisateurName) {
+                $real = $realisateurController->getRealisateurByNom($realisateurName);
+                $realisateurController->addRealisateurToEpisode($id, $real->getId());
+            }
+        }
+        return true;
     }
 
     /**

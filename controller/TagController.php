@@ -47,6 +47,44 @@ class TagController
     }
 
     /**
+     * Get a tag by its ID.
+     *
+     * @param int $id The ID of the tag.
+     * @return Tag|null The tag object or null if not found.
+     */
+    public function getTagById(int $id): ?Tag
+    {
+        $sql = "SELECT * FROM tags WHERE id = :id";
+        $stmt = $this->db->query($sql, [
+            'id' => $id
+        ]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new Tag($result['id'], $result['nom']);
+    }
+
+    /**
+     * Edit a tag by its ID.
+     *
+     * @param int $id The ID of the tag to edit.
+     * @param string $nom The new name of the tag.
+     * @return bool True on success, false on failure.
+     */
+    public function editTag(int $id, string $nom): bool
+    {
+        $sql = "UPDATE tags SET nom = :nom WHERE id = :id";
+        $stmt = $this->db->query($sql, [
+            'nom' => $nom,
+            'id' => $id
+        ]);
+        return true;
+    }
+
+    /**
      * Get all tags associated with a specific series ID.
      *
      * @param int $id The ID of the series.

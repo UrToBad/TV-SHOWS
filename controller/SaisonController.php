@@ -52,6 +52,29 @@ class SaisonController
     }
 
     /**
+     * Get a season by its ID.
+     * @param int $id The ID of the season.
+     * @return Saison|null The season object or null if not found.
+     */
+    public function getSeasonById(int $id): ?Saison
+    {
+        $sql = "SELECT * FROM saison WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $saison_id = $result['id'];
+        $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $episodes = $episodes ?? [];
+        $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        $casting = $casting ?? [];
+        return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
+    }
+
+    /**
      * Get all seasons by series ID.
      *
      * @param int $id The ID of the series.
@@ -77,6 +100,30 @@ class SaisonController
             $seasons[] = new Saison($row['id'], $row['titre'], $row['numero'], $row['affiche'], $episodes, $casting);
         }
         return $seasons;
+    }
+
+    /**
+     * Get a season by its ID.
+     *
+     * @param int $id The ID of the season.
+     * @return Saison|null The season object or null if not found.
+     */
+    public function getSaisonById(int $id) : ?Saison
+    {
+        $sql = "SELECT * FROM saison WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $saison_id = $result['id'];
+        $episodes = (new EpisodeController($this->db))->getAllEpisodesBySeasonId($saison_id);
+        $episodes = $episodes ?? [];
+        $casting = (new ActeurController($this->db))->getAllActeursBySeasonId($saison_id);
+        $casting = $casting ?? [];
+        return new Saison($result['id'], $result['titre'], $result['numero'], $result['affiche'], $episodes, $casting);
     }
 
     /**
@@ -109,6 +156,20 @@ class SaisonController
     }
 
     /**
+     * Get the series ID by season ID.
+     *
+     * @param int $saisonId The ID of the season.
+     * @return int|null The series ID or null if not found.
+     */
+    public function getSerieIdBySaisonId(int $saisonId): ?int
+    {
+        $sql = "SELECT serie_id FROM saison WHERE id = :id";
+        $stmt = $this->db->query($sql, ['id' => $saisonId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (int)$result['serie_id'] : null;
+    }
+
+    /**
      * Add a new season.
      *
      * @param int $serieId The ID of the series.
@@ -118,7 +179,7 @@ class SaisonController
      * @param array $acteurs The list of actors in the season.
      * @return bool True on success, false on failure.
      */
-    public function addSeason(int $serieId, string $titre, int $numero, string $affiche = "", array $acteurs = []): bool
+    public function addSeason(int $serieId, string $titre, int $numero, ?string $affiche = NULL, array $acteurs = []): bool
     {
         $sql = "INSERT INTO saison (serie_id, titre, numero, affiche) VALUES (:serieId, :titre, :numero, :affiche)";
         $stmt = $this->db->query($sql, [
@@ -146,6 +207,36 @@ class SaisonController
             }
         }
         return false;
+    }
+
+    /**
+     * Edit a season.
+     *
+     * @param int $id The ID of the season to edit.
+     * @param string $titre The new title of the season.
+     * @param int $numero The new season number.
+     * @param string|null $affiche The new poster of the season.
+     * @param array $acteurs The list of actors in the season.
+     * @return bool True on success, false on failure.
+     */
+    public function editSaison(int $id, string $titre, int $numero, ?string $affiche = NULL, ?array $acteurs = NULL): bool
+    {
+        $sql = "UPDATE saison SET titre = :titre, numero = :numero, affiche = :affiche WHERE id = :id";
+        $this->db->query($sql, [
+            'titre' => $titre,
+            'numero' => $numero,
+            'affiche' => $affiche,
+            'id' => $id
+        ]);
+        $acteurController = new ActeurController($this->db);
+        $acteurController->removeAllActeursFromSeason($id);
+        if($acteurs) {
+            foreach ($acteurs as $acteur) {
+                $actor = $acteurController->getActeurByNom($acteur);
+                $acteurController->addActeurToSeason($id, $actor->getId());
+            }
+        }
+        return true;
     }
 
     /**
@@ -180,7 +271,7 @@ class SaisonController
         if ($seasons) {
             $episodeController = new EpisodeController($this->db);
             foreach ($seasons as $season) {
-                $episodes = $episodeController->deleteAllEpisodesBySeasonId($season->getId());
+                $episodeController->deleteAllEpisodesBySeasonId($season->getId());
                 $this->deleteById($season->getId());
             }
         }
